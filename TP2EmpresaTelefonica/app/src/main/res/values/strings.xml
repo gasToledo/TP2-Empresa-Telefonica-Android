@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TP2 Empresa Telefonica</string>
+    <string name="inicio_de_sesi_n">Inicio de sesión</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="ingresar_clave">Ingresar clave</string>
+    <string name="ingrese_usuario">Ingrese usuario</string>
+    <string name="olvide_clave">Olvide clave</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="menu_principal_admin">Bienvenido al menu</string>
+    <string name="ingresa_codigo_cliente">Ingresa codigo cliente</string>
+    <string name="nombre">Nombre</string>
+    <string name="tipo_de_cliente">Tipo de cliente</string>
+    <string name="costo_total_llamadas">Costo total llamadas</string>
+</resources>
