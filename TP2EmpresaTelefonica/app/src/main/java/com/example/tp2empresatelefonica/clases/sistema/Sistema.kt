@@ -32,19 +32,25 @@ class Sistema {
 
     private fun verificarCliente(cliente: Cliente){
         if(!listaClientes.contains(cliente)){
-            throw NoExisteCliente("[ERROR] Cliente no existente")
+            throw NoExisteCliente("[ERROR] Cliente no existente.")
         }
     }
 
     private fun verificarCliente(codigo: Int){
         if(!listaClientes.contains(Cliente(codigo))){
-            throw NoExisteCliente("[ERROR] Cliente no existente")
+            throw NoExisteCliente("[ERROR] Cliente no existente.")
         }
     }
 
+    fun obtenerListaDeClientes() : MutableList<Cliente> {
+
+        return listaClientes.keys.toMutableList()
+    }
+
+
     private fun ingresarHora(hora : String): LocalTime {
 
-        lateinit var time : LocalTime
+        var time : LocalTime = LocalTime.now()
         try {
              time = LocalTime.parse(hora, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
         }catch (e:DateTimeException){
@@ -56,7 +62,7 @@ class Sistema {
 
     private fun ingresarFecha(fecha : String) : LocalDate {
 
-        lateinit var date : LocalDate
+         var date : LocalDate = LocalDate.now()
 
         try {
             val dateAux = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"))

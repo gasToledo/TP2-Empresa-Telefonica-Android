@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/AndroidStudio/TP2-Empresa-Telefonica-Android/TP2EmpresaTelefonica/app/src/main/res/layout/activity_menu_principal_admin.xml" value="0.36822916666666666" />
+        <entry key="..\:/Documentos/AndroidStudio/TP2-Empresa-Telefonica-Android/TP2EmpresaTelefonica/app/src/main/res/layout/inicio_sesion.xml" value="0.36822916666666666" />
+        <entry key="..\:/Documentos/AndroidStudio/TP2-Empresa-Telefonica-Android/TP2EmpresaTelefonica/app/src/main/res/layout/menu_principal_admin.xml" value="0.36822916666666666" />
+        <entry key="..\:/Documentos/AndroidStudio/TP2-Empresa-Telefonica-Android/TP2EmpresaTelefonica/app/src/main/res/layout/rv_layout_admin.xml" value="0.36822916666666666" />
         <entry key="..\:/Documentos/AndroidStudio/TP2EmpresaTelefonica/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Documentos/AndroidStudio/TP2EmpresaTelefonica/app/src/main/res/layout/inicio_sesion.xml" value="0.36822916666666666" />
         <entry key="..\:/Documentos/AndroidStudio/TP2EmpresaTelefonica/app/src/main/res/layout/menu_principal_admin.xml" value="0.36822916666666666" />

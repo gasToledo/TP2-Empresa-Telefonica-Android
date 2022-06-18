@@ -1,4 +1,4 @@
-package com.example.tp2empresatelefonica
+package com.example.tp2empresatelefonica.interfaz
 
 import android.os.Build
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
+import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.clases.sistema.Sistema
 
@@ -39,7 +40,7 @@ class AdapterListaDeClientes(private val listaClientes : MutableList<Cliente>, p
 
         holder.nombreCliente.text = listaClientes[position].nombreDeCliente()
         holder.tipoDeCliente.text = listaClientes[position].tipoCliente().name
-        holder.costoTotalDeLlamadasCliente.text = "1000"
+        holder.costoTotalDeLlamadasCliente.text = sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente()).toString()
     }
 
     override fun getItemCount(): Int  = listaClientes.size
