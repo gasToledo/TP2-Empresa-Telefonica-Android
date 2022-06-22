@@ -59,11 +59,8 @@ class InicioDeSesion : AppCompatActivity() {
 
             if (auxUsuario != null) {
 
-                val intent = Intent(this, MenuActivity::class.java)
-                intent.putExtra(claveMensaje, auxUsuario.tipoUsuario.name)
-                startActivity(intent)
 
-                /*if (auxUsuario.tipoUsuario == TipoUsuario.ADMINISTRADOR) {
+                if (auxUsuario.tipoUsuario == TipoUsuario.ADMINISTRADOR) {
 
                     val intent = Intent(this, MenuPrincipalAdmin::class.java)
                     intent.putExtra(claveMensaje, binding.ingresarUsuario.text.toString())
@@ -75,7 +72,7 @@ class InicioDeSesion : AppCompatActivity() {
                     val intent = Intent(this, MenuPrincipalCliente::class.java)
                     intent.putExtra(claveMensaje, binding.ingresarUsuario.text.toString())
                     startActivity(intent)
-                }*/
+                }
             }
         else {
             Toast.makeText(this,"Error de usuario o clave.", Toast.LENGTH_SHORT).show()

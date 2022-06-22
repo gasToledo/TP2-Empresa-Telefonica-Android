@@ -13,7 +13,7 @@ import com.example.tp2empresatelefonica.clases.usuarios.TipoUsuario
 class MenuInicial : Fragment() {
 
 
-    lateinit var message : String
+    private lateinit var message : String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

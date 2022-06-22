@@ -3,7 +3,12 @@ package com.example.tp2empresatelefonica.interfaz.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.clases.sistema.Sistema
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalAdminBinding
@@ -23,10 +28,52 @@ class MenuPrincipalAdmin : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        setSupportActionBar(findViewById(R.id.toolbar_menu_admin))
+        supportActionBar?.setDisplayShowTitleEnabled(false);
         iniciarMenu()
 
 
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        MenuInflater(this).inflate(R.menu.toolbar_theme, menu)
+
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId){
+
+            R.id.action_agregar_cliente -> {
+
+                /*
+                Abrir un fragmento que permita agregar el cliente
+                ingresando informacion
+                 */
+                true
+
+            }
+
+            R.id.action_quitar_cliente -> {
+
+                /*
+                Agregar un fragmento que permita quitar al cliente
+                ingresando su nombre o ID
+                 */
+                true
+            }
+
+            R.id.action_salir_cuenta -> {
+
+                val intent = Intent(this, InicioDeSesion::class.java)
+                startActivity(intent)
+                true
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
 
     private fun iniciarMenu(){
 
