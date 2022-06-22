@@ -1,9 +1,10 @@
-package com.example.tp2empresatelefonica.interfaz
+package com.example.tp2empresatelefonica.interfaz.adapters
 
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.clases.sistema.Sistema
 
-class AdapterListaDeClientes(private val listaClientes : MutableList<Cliente>, private val sistema: Sistema) :
+class AdapterListaDeClientes(private val listaClientes: MutableList<Cliente>, private val sistema: Sistema, val enviarCliente: (Cliente) -> Unit) :
     RecyclerView.Adapter<AdapterListaDeClientes.ViewHolder>() {
 
     class ViewHolder(view :View) : RecyclerView.ViewHolder(view) {
@@ -19,11 +20,13 @@ class AdapterListaDeClientes(private val listaClientes : MutableList<Cliente>, p
         val nombreCliente : TextView
         val tipoDeCliente : TextView
         val costoTotalDeLlamadasCliente : TextView
+        val vista : LinearLayout
 
         init {
             nombreCliente = view.findViewById(R.id.rvNombreCliente)
             tipoDeCliente = view.findViewById(R.id.rvTipoDeCliente)
             costoTotalDeLlamadasCliente =  view.findViewById(R.id.rvCostoTotalLlamadasCliente)
+            vista = view.findViewById(R.id.rvLinearLayout)
         }
 
     }
@@ -41,6 +44,10 @@ class AdapterListaDeClientes(private val listaClientes : MutableList<Cliente>, p
         holder.nombreCliente.text = listaClientes[position].nombreDeCliente()
         holder.tipoDeCliente.text = listaClientes[position].tipoCliente().name
         holder.costoTotalDeLlamadasCliente.text = sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente()).toString()
+
+        holder.vista.setOnClickListener {
+            enviarCliente(listaClientes[position])
+        }
     }
 
     override fun getItemCount(): Int  = listaClientes.size

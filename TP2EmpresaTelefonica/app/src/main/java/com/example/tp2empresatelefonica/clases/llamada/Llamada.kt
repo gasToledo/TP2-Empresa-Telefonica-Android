@@ -5,11 +5,11 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 abstract class Llamada(
-    private val  codigo_cliente : Int,
-    private val fecha_llamada: LocalDate,
-    private val hora_llamada: LocalTime,
-    protected val duracion_llamada: Double,
-    protected val tipo_llamada: Char
+    val  codigo_cliente : Int,
+    val fecha_llamada: LocalDate,
+    val hora_llamada: LocalTime,
+    val duracion_llamada: Double,
+    val tipo_llamada: Char
 ) {
 
     abstract fun calcularPrecio(): Double
@@ -26,4 +26,5 @@ abstract class Llamada(
             
             """.trimIndent()
     }
+
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".interfaz.InicioDeSesion">
+    tools:context=".interfaz.activities.InicioDeSesion">
 
     <TextView
         android:id="@+id/tituloPrincipal"
@@ -71,6 +71,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         >
     </Button>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/verficarAdmin"
+        android:text="@string/admin"
+        android:textSize="20sp"
+        android:textStyle="italic"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textosClickeables"
+        app:layout_constraintTop_toBottomOf="@+id/botonIngresar">
+    </CheckBox>
 
     <LinearLayout
         android:layout_width="wrap_content"

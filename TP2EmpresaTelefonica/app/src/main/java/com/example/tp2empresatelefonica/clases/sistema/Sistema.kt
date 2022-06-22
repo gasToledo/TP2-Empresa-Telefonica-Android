@@ -47,12 +47,20 @@ class Sistema {
         return listaClientes.keys.toMutableList()
     }
 
+    fun obtenerListaDeLlamadasPorCliente(cliente : Cliente) : MutableList<Llamada>? {
+
+        verificarCliente(cliente)
+
+        return listaClientes[cliente]?.toMutableList()
+
+    }
+
 
     private fun ingresarHora(hora : String): LocalTime {
 
         var time : LocalTime = LocalTime.now()
         try {
-             time = LocalTime.parse(hora, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+             time = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm:ss"))
         }catch (e:DateTimeException){
             println(e.message)
         }

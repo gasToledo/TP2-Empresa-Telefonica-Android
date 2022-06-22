@@ -1,7 +1,11 @@
 package com.example.tp2empresatelefonica.clases.usuarios
 
-class Usuario(val user : String, val password : String) {
+class Usuario(val user : String, val password : String, var tipoUsuario: TipoUsuario = TipoUsuario.CLIENTE) {
 
+
+    fun convertirEnAdmin(){
+        this.tipoUsuario = TipoUsuario.ADMINISTRADOR
+    }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

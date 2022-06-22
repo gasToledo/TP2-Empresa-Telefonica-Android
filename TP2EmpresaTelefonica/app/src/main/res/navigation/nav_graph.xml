@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_menu_inicial">
+    <fragment
+        android:id="@+id/menuCliente"
+        android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuCliente"
+        android:label="fragment_menu_cliente"
+        tools:layout="@layout/fragment_menu_cliente" />
+    <fragment
+        android:id="@+id/menuAdmin"
+        android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuAdmin"
+        android:label="fragment_menu_admin"
+        tools:layout="@layout/fragment_menu_admin"/>
+    <fragment
+        android:id="@+id/fragment_menu_inicial"
+        android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuInicial"
+        android:label="fragment_menu_inicial"
+        tools:layout="@layout/fragment_menu_inicial" >
+        <action
+            android:id="@+id/action_fragment_menu_inicial_to_menuCliente"
+            app:destination="@id/menuCliente" />
+        <action
+            android:id="@+id/action_fragment_menu_inicial_to_menuAdmin"
+            app:destination="@id/menuAdmin" />
+    </fragment>
+</navigation>
