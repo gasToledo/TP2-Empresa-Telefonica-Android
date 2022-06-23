@@ -47,12 +47,12 @@ class MenuInicial : Fragment() {
     private fun iniciarMenuCliente(view : View){
 
         val navController = view.findNavController()
-        navController.navigate(R.id.action_fragment_menu_inicial_to_menuCliente)
+
     }
 
     private fun iniciarMenuAdmin(view: View){
         val navController = view.findNavController()
-        navController.navigate(R.id.action_fragment_menu_inicial_to_menuAdmin)
+
     }
 
 }

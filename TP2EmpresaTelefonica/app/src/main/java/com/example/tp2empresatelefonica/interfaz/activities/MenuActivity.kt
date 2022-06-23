@@ -26,22 +26,8 @@ class MenuActivity : AppCompatActivity() {
         val intent : Intent = intent
         val tipoDeUsuario = intent.getStringExtra("tipoDeUsuario").toString()
 
-        enviarInformacionAlFragmento(tipoDeUsuario)
-
     }
 
-    private fun enviarInformacionAlFragmento(informacion : String) {
-
-        val bundle = Bundle()
-        bundle.putString("tipoDeUsuario", informacion)
-
-        val fragmentoDestino = MenuInicial()
-        fragmentoDestino.arguments = bundle
-
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_container, fragmentoDestino)
-            .commit()
-    }
 
 
 

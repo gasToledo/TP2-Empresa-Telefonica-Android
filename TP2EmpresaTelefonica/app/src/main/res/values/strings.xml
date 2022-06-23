@@ -34,4 +34,12 @@
     <string name="quitar_cliente">Quitar cliente</string>
     <string name="salir">Salir</string>
     <string name="menu_admin">Menu admin</string>
+    <string name="nombre_del_cliente">Nombre del cliente</string>
+    <string name="apellido_del_cliente">Apellido del cliente</string>
+    <string name="agregar">Agregar</string>
+    <string name="nuevo_cliente">Nuevo cliente</string>
+    <string name="ingresar_nombre">Ingresar nombre</string>
+    <string name="ingresar_id">Ingresar ID</string>
+    <string name="eliminar_cliente">Eliminar cliente</string>
+    <string name="eliminar">Eliminar</string>
 </resources>

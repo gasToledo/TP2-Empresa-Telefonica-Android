@@ -36,6 +36,7 @@ class MenuAdmin : Fragment() {
 
         binding.tituloMenuPrincipalAdmin.text = "Bienvenido al menu $userName"*/
         iniciarSistema(sistemaPrincipal)
+
         iniciarRecyclerView()
 
     }

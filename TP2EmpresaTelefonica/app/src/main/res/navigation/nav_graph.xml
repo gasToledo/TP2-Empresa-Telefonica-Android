@@ -3,27 +3,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragment_menu_inicial">
+    app:startDestination="@id/menuAdmin">
     <fragment
-        android:id="@+id/menuCliente"
-        android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuCliente"
-        android:label="fragment_menu_cliente"
-        tools:layout="@layout/fragment_menu_cliente" />
+        android:id="@+id/agregarClienteFragment"
+        android:name="com.example.tp2empresatelefonica.interfaz.fragments.AgregarClienteFragment"
+        android:label="fragment_agregar_cliente"
+        tools:layout="@layout/fragment_agregar_cliente" >
+        <action
+            android:id="@+id/action_agregarClienteFragment_to_menuAdmin"
+            app:destination="@id/menuAdmin" />
+    </fragment>
+    <activity
+        android:id="@+id/menuPrincipalAdmin"
+        android:name="com.example.tp2empresatelefonica.interfaz.activities.MenuPrincipalAdmin"
+        android:label="MenuPrincipalAdmin" />
     <fragment
         android:id="@+id/menuAdmin"
         android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuAdmin"
         android:label="fragment_menu_admin"
-        tools:layout="@layout/fragment_menu_admin"/>
+        tools:layout="@layout/fragment_menu_admin" >
+        <action
+            android:id="@+id/action_menuAdmin_to_agregarClienteFragment"
+            app:destination="@id/agregarClienteFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_menuAdmin_to_quitarClienteFragment"
+            app:destination="@id/quitarClienteFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/fragment_menu_inicial"
-        android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuInicial"
-        android:label="fragment_menu_inicial"
-        tools:layout="@layout/fragment_menu_inicial" >
+        android:id="@+id/quitarClienteFragment"
+        android:name="com.example.tp2empresatelefonica.interfaz.fragments.QuitarClienteFragment"
+        android:label="fragment_quitar_cliente"
+        tools:layout="@layout/fragment_quitar_cliente" >
         <action
-            android:id="@+id/action_fragment_menu_inicial_to_menuCliente"
-            app:destination="@id/menuCliente" />
-        <action
-            android:id="@+id/action_fragment_menu_inicial_to_menuAdmin"
+            android:id="@+id/action_quitarClienteFragment_to_menuAdmin"
             app:destination="@id/menuAdmin" />
     </fragment>
 </navigation>

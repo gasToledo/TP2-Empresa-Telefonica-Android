@@ -28,62 +28,19 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloMenuPrincipalAdmin"
-        android:text="@string/menu_principal_admin"
-        android:textSize="30sp"
-        android:textStyle="bold"
+    <androidx.fragment.app.FragmentContainerView
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_menu_admin"
-        app:layout_constraintBottom_toTopOf="@+id/textoBusquedaCliente">
-
-    </TextView>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textoBusquedaCliente"
-        android:hint="@string/ingresa_codigo_cliente"
-        android:textSize="25sp"
-        android:ems="10"
-
-        app:layout_constraintTop_toBottomOf="@+id/tituloMenuPrincipalAdmin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        android:autofillHints="yes"
-        android:inputType="text">
-    </EditText>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:id="@+id/nav_host_fragment_container"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:id="@+id/rvRegistroDeLlamadas"
-        android:scrollbars="vertical"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline"
-        app:layout_constraintBottom_toBottomOf="@+id/guideline2">
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_menu_admin"
+        app:layout_constraintBottom_toBottomOf="parent"
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="428dp" />
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="696dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
