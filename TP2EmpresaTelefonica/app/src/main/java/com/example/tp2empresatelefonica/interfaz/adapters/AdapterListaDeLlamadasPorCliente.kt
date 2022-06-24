@@ -46,15 +46,15 @@ class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.fechaDeLlamada.text = "Fecha:  ${listaDeLlamadas[position].fecha_llamada}"
+        holder.fechaDeLlamada.text = "Fecha: ${listaDeLlamadas[position].fecha_llamada}"
 
-        holder.horarioDeLlamada.text = "Hora:  ${listaDeLlamadas[position].hora_llamada.format(
+        holder.horarioDeLlamada.text = "Hora: ${listaDeLlamadas[position].hora_llamada.format(
             DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
                 .withLocale(Locale.ENGLISH)
                 .withZone(ZoneId.systemDefault()))}"
 
-        holder.duracionDeLaLlamada.text = "Duracion:  ${listaDeLlamadas[position].duracion_llamada}"
-        holder.costoDeLaLlamada.text = "Precio:  ${listaDeLlamadas[position].calcularPrecio().toBigDecimal().setScale(2,
+        holder.duracionDeLaLlamada.text = "Duracion: ${listaDeLlamadas[position].duracion_llamada}"
+        holder.costoDeLaLlamada.text = "Precio: ${listaDeLlamadas[position].calcularPrecio().toBigDecimal().setScale(2,
             RoundingMode.HALF_DOWN).toDouble()}"
 
 

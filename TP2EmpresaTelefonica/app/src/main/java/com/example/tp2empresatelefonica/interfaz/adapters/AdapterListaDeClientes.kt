@@ -41,9 +41,9 @@ class AdapterListaDeClientes(private val listaClientes: MutableList<Cliente>, pr
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.nombreCliente.text = listaClientes[position].nombreDeCliente()
-        holder.tipoDeCliente.text = listaClientes[position].tipoCliente().name
-        holder.costoTotalDeLlamadasCliente.text = sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente()).toString()
+        holder.nombreCliente.text = "Nombre: ${listaClientes[position].nombreDeCliente()}"
+        holder.tipoDeCliente.text = "Estado: ${listaClientes[position].tipoCliente().name}"
+        holder.costoTotalDeLlamadasCliente.text = "Costo total de llamadas: ${sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente())}"
 
         holder.vista.setOnClickListener {
             enviarCliente(listaClientes[position])

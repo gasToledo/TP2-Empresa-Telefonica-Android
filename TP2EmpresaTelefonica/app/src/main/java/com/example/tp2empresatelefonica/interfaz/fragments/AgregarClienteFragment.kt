@@ -16,7 +16,12 @@ import com.example.tp2empresatelefonica.databinding.FragmentAgregarClienteBindin
 class AgregarClienteFragment : Fragment() {
 
     private lateinit var binding : FragmentAgregarClienteBinding
-    private var listaDeClientesRegistrados = mutableSetOf<Cliente>()
+    private var listaDeClientesRegistrados = mutableListOf<Cliente>(
+        Cliente(2,"G","T"),
+        Cliente(100,"M","T")
+    )
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +47,13 @@ class AgregarClienteFragment : Fragment() {
 
                 Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
             }
+            else {
+                Toast.makeText(binding.root.context, "Cliente ya registrado", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.agregarClienteButtonSalir.setOnClickListener {
+            navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
         }
     }
 
@@ -62,8 +74,6 @@ class AgregarClienteFragment : Fragment() {
                 return true
             }
         }
-
-        Toast.makeText(binding.root.context, "Cliente ya registrado", Toast.LENGTH_SHORT).show()
         return false
     }
 

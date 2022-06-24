@@ -14,7 +14,10 @@ import com.example.tp2empresatelefonica.databinding.FragmentQuitarClienteBinding
 class QuitarClienteFragment : Fragment() {
 
     private lateinit var binding : FragmentQuitarClienteBinding
-    private var listaDeClientes = mutableListOf<Cliente>()
+    private var listaDeClientes = mutableListOf<Cliente>(
+        Cliente(1,"Gas","Tol"),
+        Cliente(2,"Sas","Sus")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,10 @@ class QuitarClienteFragment : Fragment() {
 
                 Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
             }
+            else{
+
+                Toast.makeText(binding.root.context, "Cliente no existente", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.quitarClienteButtonSalir.setOnClickListener {
@@ -51,15 +58,13 @@ class QuitarClienteFragment : Fragment() {
 
         listaDeClientes.forEach { cliente ->
 
-            if(cliente.codigoDeCliente().toString() != id && cliente.nombreDeCliente() != nombre){
+            if(cliente.codigoDeCliente().toString() == id && cliente.nombreDeCliente() == nombre){
 
                 listaDeClientes.remove(cliente)
                 Toast.makeText(binding.root.context, "$nombre a sido removido con exito.", Toast.LENGTH_SHORT).show()
                 return true
             }
         }
-
-        Toast.makeText(binding.root.context, "Cliente no existente", Toast.LENGTH_SHORT).show()
         return false
     }
 
