@@ -20,9 +20,9 @@ class QuitarClienteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
 
         binding = FragmentQuitarClienteBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 
@@ -36,6 +36,10 @@ class QuitarClienteFragment : Fragment() {
             if(quitarCliente(binding.quitarClienteId.text.toString(), binding.quitarClienteNombre.text.toString())){
                 navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
             }
+        }
+
+        binding.quitarClienteButtonSalir.setOnClickListener {
+            navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
         }
     }
 

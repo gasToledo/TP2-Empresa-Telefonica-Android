@@ -52,22 +52,12 @@ class MenuPrincipalAdmin : AppCompatActivity() {
 
             R.id.action_agregar_cliente -> {
 
-                /*
-                Abrir un fragmento que permita agregar el cliente
-                ingresando informacion
-                 */
                 iniciarFragmentoAgregarCliente()
-
                 true
-
             }
 
             R.id.action_quitar_cliente -> {
 
-                /*
-                Agregar un fragmento que permita quitar al cliente
-                ingresando su nombre o ID
-                 */
                 iniciarFragmentoQuitarCliente()
                 true
             }
@@ -102,10 +92,6 @@ class MenuPrincipalAdmin : AppCompatActivity() {
 
     private fun iniciarMenu(){
 
-       /* val intent : Intent = intent
-        val userName = intent.getStringExtra("nombre_del_usuario")
-
-        binding.tituloMenuPrincipalAdmin.text = "Bienvenido al menu $userName"*/
         iniciarSistema(sistemaPrincipal)
 
     }
