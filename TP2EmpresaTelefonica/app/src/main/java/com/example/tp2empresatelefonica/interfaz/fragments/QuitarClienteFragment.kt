@@ -36,6 +36,10 @@ class QuitarClienteFragment : Fragment() {
             if(quitarCliente(binding.quitarClienteId.text.toString(), binding.quitarClienteNombre.text.toString())){
                 navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
             }
+            else if (binding.quitarClienteId.text.isNullOrEmpty() || binding.quitarClienteNombre.text.isNullOrEmpty()) {
+
+                Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.quitarClienteButtonSalir.setOnClickListener {
