@@ -10,14 +10,11 @@ import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.databinding.FragmentQuitarClienteBinding
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
 
 class QuitarClienteFragment : Fragment() {
 
     private lateinit var binding : FragmentQuitarClienteBinding
-    private var listaDeClientes = mutableListOf<Cliente>(
-        Cliente(1,"Gas","Tol"),
-        Cliente(2,"Sas","Sus")
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +33,15 @@ class QuitarClienteFragment : Fragment() {
 
         binding.quitarClienteButton.setOnClickListener {
 
-            if(quitarCliente(binding.quitarClienteId.text.toString(), binding.quitarClienteNombre.text.toString())){
-                navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
-            }
-            else if (binding.quitarClienteId.text.isNullOrEmpty() || binding.quitarClienteNombre.text.isNullOrEmpty()) {
+
+            if (binding.quitarClienteId.text.isNullOrEmpty() || binding.quitarClienteNombre.text.isNullOrEmpty()) {
 
                 Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
+            }
+            else if(ClientesRepository.removerClientes(binding.quitarClienteId.text.toString().toInt())){
+                Toast.makeText(binding.root.context, "El cliente de id: ${binding.quitarClienteId.text}, ha sido removido con exito", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
+
             }
             else{
 
@@ -52,21 +52,6 @@ class QuitarClienteFragment : Fragment() {
         binding.quitarClienteButtonSalir.setOnClickListener {
             navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
         }
+
     }
-
-    private fun quitarCliente(id : String, nombre : String) : Boolean{
-
-        listaDeClientes.forEach { cliente ->
-
-            if(cliente.codigoDeCliente().toString() == id && cliente.nombreDeCliente() == nombre){
-
-                listaDeClientes.remove(cliente)
-                Toast.makeText(binding.root.context, "$nombre a sido removido con exito.", Toast.LENGTH_SHORT).show()
-                return true
-            }
-        }
-        return false
-    }
-
-
 }

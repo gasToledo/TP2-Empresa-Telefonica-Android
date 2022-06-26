@@ -11,15 +11,13 @@ import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.databinding.FragmentAgregarClienteBinding
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
 
 
 class AgregarClienteFragment : Fragment() {
 
     private lateinit var binding : FragmentAgregarClienteBinding
-    private var listaDeClientesRegistrados = mutableListOf<Cliente>(
-        Cliente(2,"G","T"),
-        Cliente(100,"M","T")
-    )
+
 
 
     override fun onCreateView(
@@ -39,13 +37,14 @@ class AgregarClienteFragment : Fragment() {
 
         binding.agregarClienteButton.setOnClickListener {
 
-            if(agregrarCliente(binding.agregarClienteId.toString())){
 
-                navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
-            }
-            else if (binding.agregarClienteId.text.isNullOrEmpty() || binding.agregarClienteNombre.text.isNullOrEmpty() || binding.agregarClienteApellido.text.isNullOrEmpty()) {
+            if (binding.agregarClienteId.text.isNullOrEmpty() || binding.agregarClienteNombre.text.isNullOrEmpty() || binding.agregarClienteApellido.text.isNullOrEmpty()) {
 
                 Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
+            }
+            else if(ClientesRepository.agregarClientes(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString())){
+                Toast.makeText(binding.root.context, "${binding.agregarClienteNombre.text}, ${binding.agregarClienteApellido.text} a sido añadido con exito.", Toast.LENGTH_SHORT).show()
+                navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
             }
             else {
                 Toast.makeText(binding.root.context, "Cliente ya registrado", Toast.LENGTH_SHORT).show()
@@ -57,24 +56,7 @@ class AgregarClienteFragment : Fragment() {
         }
     }
 
-    private fun agregrarCliente(id: String) : Boolean {
 
-        listaDeClientesRegistrados.forEach { cliente ->
 
-            if(cliente.codigoDeCliente().toString() != id){
-
-                listaDeClientesRegistrados.add(
-                    Cliente(
-                        id.toInt(),
-                        binding.agregarClienteNombre.text.toString(),
-                        binding.agregarClienteApellido.text.toString()
-                    )
-                )
-                Toast.makeText(binding.root.context, "${binding.agregarClienteNombre.text}, ${binding.agregarClienteApellido.text} a sido añadido con exito.", Toast.LENGTH_SHORT).show()
-                return true
-            }
-        }
-        return false
-    }
 
 }

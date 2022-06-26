@@ -13,6 +13,8 @@ import com.example.tp2empresatelefonica.clases.sistema.Sistema
 import com.example.tp2empresatelefonica.databinding.FragmentMenuAdminBinding
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalAdminBinding
 import com.example.tp2empresatelefonica.interfaz.adapters.AdapterListaDeClientes
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
+import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
 import java.time.LocalDate
 
 
@@ -51,6 +53,8 @@ class MenuAdmin : Fragment() {
 
     private fun iniciarSistema(sistema : Sistema){
 
+        sistema.iniciarClientesPredeterminados()
+        /*
         var codigoCliente = 1
 
         repeat(15){
@@ -74,7 +78,7 @@ class MenuAdmin : Fragment() {
                     sistema.realizarLlamada(cliente, "10-09-2020", "12:00", 122.0, 'L')
                 }
             }
-        }
+        }*/
 
 
     }

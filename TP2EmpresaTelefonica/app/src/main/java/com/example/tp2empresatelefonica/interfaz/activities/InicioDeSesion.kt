@@ -7,16 +7,15 @@ import android.widget.Toast
 import com.example.tp2empresatelefonica.clases.usuarios.TipoUsuario
 import com.example.tp2empresatelefonica.clases.usuarios.Usuario
 import com.example.tp2empresatelefonica.databinding.InicioSesionBinding
+import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
+import com.example.tp2empresatelefonica.repositorios.UsersRepository
 
 class InicioDeSesion : AppCompatActivity() {
 
     private lateinit var binding : InicioSesionBinding
     private val claveMensaje : String = "tipoDeUsuario"
 
-    private val listaDeUsuarios = mutableListOf(
-        Usuario("a","a", TipoUsuario.ADMINISTRADOR),
-        Usuario("c", "c", TipoUsuario.CLIENTE)
-    )
+    private val listaDeUsuarios = UsersRepository.obtenerListaUsuarios()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +31,7 @@ class InicioDeSesion : AppCompatActivity() {
         }
 
         binding.textoRegistrarse.setOnClickListener {
-            registrarse()
+            //registrarse()
         }
 
         binding.textoOlvidoClave.setOnClickListener {
@@ -41,7 +40,9 @@ class InicioDeSesion : AppCompatActivity() {
     }
 
 
+
     private fun obtenerUsuario(nombre : String, clave : String) : Usuario? {
+
 
         listaDeUsuarios.forEach {
             usuario ->
@@ -79,7 +80,15 @@ class InicioDeSesion : AppCompatActivity() {
             }
 
     }
-    private fun registrarse() {
+    private fun registrarse(id : Int, nombre: String, apellido : String) {
+
+        listaDeUsuarios.forEach {
+            usuario ->
+            if(usuario.idUsuario != id){
+
+                UsersRepository.agregarUsuario(id,nombre,apellido, TipoUsuario.CLIENTE)
+            }
+        }
 
     }
 

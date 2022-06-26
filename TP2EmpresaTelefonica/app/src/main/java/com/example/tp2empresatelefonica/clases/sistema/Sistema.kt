@@ -10,6 +10,8 @@ import com.example.tp2empresatelefonica.clases.llamada.LlamadaNocturna
 import com.example.tp2empresatelefonica.clases.llamada.LlamadaRegular
 import com.example.tp2empresatelefonica.excepciones.NoExisteCliente
 import com.example.tp2empresatelefonica.excepciones.TipoDeLlamadaErroneo
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
+import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
 import java.math.RoundingMode
 import java.time.DateTimeException
 import java.time.DayOfWeek
@@ -30,6 +32,16 @@ class Sistema {
         listaClientes[alta] = historialLlamadas
     }
 
+    fun iniciarClientesPredeterminados() {
+
+        val listaAux = ClientesRepository.obtenerListaDeClientes()
+
+        listaAux.forEach {
+
+            listaClientes[it] = LlamadasRepository.obtenerListaDeLlamadas()
+        }
+    }
+
     private fun verificarCliente(cliente: Cliente){
         if(!listaClientes.contains(cliente)){
             throw NoExisteCliente("[ERROR] Cliente no existente.")
@@ -47,11 +59,11 @@ class Sistema {
         return listaClientes.keys.toMutableList()
     }
 
-    fun obtenerListaDeLlamadasPorCliente(cliente : Cliente) : MutableList<Llamada>? {
+    fun obtenerListaDeLlamadasPorCliente(id: Int) : MutableList<Llamada>? {
 
-        verificarCliente(cliente)
+        verificarCliente(id)
 
-        return listaClientes[cliente]?.toMutableList()
+        return listaClientes[Cliente(id)]?.toMutableList()
 
     }
 
@@ -110,9 +122,10 @@ class Sistema {
 
         verificarCliente(codigoBaja)
 
-        val clienteEliminado = obtenerCliente(codigoBaja)
+        /*
+        val clienteEliminado = obtenerCliente(codigoBaja)*/
 
-        listaClientes.remove(clienteEliminado)
+        ClientesRepository.removerClientes(codigoBaja)
     }
 
     private fun ingresarLlamadaACliente(cliente: Cliente, llamada : Llamada){

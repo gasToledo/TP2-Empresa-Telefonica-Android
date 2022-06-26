@@ -7,9 +7,9 @@
     tools:context=".interfaz.fragments.MenuAdmin">
 
     <TextView
+        android:id="@+id/tituloMenuPrincipalAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tituloMenuPrincipalAdmin"
         android:text="@string/menu_principal_admin"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -17,25 +17,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textoBusquedaCliente">
+        app:layout_constraintBottom_toBottomOf="@+id/guideline">
 
     </TextView>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textoBusquedaCliente"
-        android:hint="@string/ingresa_codigo_cliente"
-        android:textSize="25sp"
-        android:ems="10"
-
-        app:layout_constraintTop_toBottomOf="@+id/tituloMenuPrincipalAdmin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        android:autofillHints="yes"
-        android:inputType="text">
-    </EditText>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -56,13 +40,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="428dp" />
+        app:layout_constraintGuide_end="550dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="696dp" />
+        app:layout_constraintGuide_begin="625dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

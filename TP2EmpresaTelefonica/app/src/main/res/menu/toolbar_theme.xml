@@ -16,7 +16,7 @@
 
     <item
         android:id="@+id/action_salir_cuenta"
-        android:icon="@drawable/ic_logout_account"
+        android:icon="@drawable/ic_baseline_login_24"
         android:title="@string/salir"
         app:showAsAction="never"/>
 

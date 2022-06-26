@@ -12,6 +12,8 @@ import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.clases.sistema.Sistema
 import com.example.tp2empresatelefonica.databinding.FragmentMenuClienteBinding
 import com.example.tp2empresatelefonica.interfaz.adapters.AdapterListaDeLlamadasPorCliente
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
+import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
 import java.time.LocalDate
 
 
@@ -29,9 +31,8 @@ class MenuCliente : Fragment() {
 
     private fun iniciarMenu(){
 
-        /*val intent : Intent = intent
-        val userName = intent.getStringExtra("nombre_del_usuario")
-        binding.tituloMenuPrincipalCliente.text = "Bienvenido al menu $userName"*/
+
+        binding.tituloMenuPrincipalCliente.text = "Bienvenido al menu ${ClientesRepository.obtenerCliente(1).nombreDeCliente()}"
 
         iniciarSistema(sistemaPrincipal)
         iniciarRecyclerView()
@@ -41,33 +42,17 @@ class MenuCliente : Fragment() {
     private fun iniciarRecyclerView(){
         binding.rvRegistroDeLlamadaPorCliente.layoutManager = LinearLayoutManager(binding.root.context)
         binding.rvRegistroDeLlamadaPorCliente.setHasFixedSize(true)
-        val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(Cliente(1))
+        val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(1)
             ?.let { AdapterListaDeLlamadasPorCliente(it) }
         binding.rvRegistroDeLlamadaPorCliente.adapter = customAdapter
 
     }
 
+
+
     private fun iniciarSistema(sistema: Sistema) {
 
-        sistema.darDeAltaCliente(1,"cliente 1", "", LocalDate.now())
-
-        val listaDeClientes = sistema.obtenerListaDeClientes()
-        var contador = 1
-
-        listaDeClientes.forEach { cliente ->
-
-            repeat(20){
-                if(contador % 2 == 0) {
-                    sistema.realizarLlamada(cliente, "06-06-2020", "22:00:00", 550.0, 'I')
-
-                }else {
-                    sistema.realizarLlamada(cliente, "09-10-2020", "12:00:00", 122.0, 'L')
-                }
-                contador++
-            }
-
-        }
-
+        sistema.iniciarClientesPredeterminados()
 
     }
 

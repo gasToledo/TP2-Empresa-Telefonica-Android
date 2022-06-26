@@ -3,69 +3,85 @@ package com.example.tp2empresatelefonica.interfaz.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tp2empresatelefonica.clases.cliente.Cliente
-import com.example.tp2empresatelefonica.clases.sistema.Sistema
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.navigation.NavDestination
+import androidx.navigation.Navigation
+import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalClienteBinding
-import com.example.tp2empresatelefonica.interfaz.adapters.AdapterListaDeLlamadasPorCliente
-import java.time.LocalDate
+
 
 class MenuPrincipalCliente : AppCompatActivity() {
 
     private lateinit var binding: MenuPrincipalClienteBinding
-    private val sistemaPrincipal = Sistema()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = MenuPrincipalClienteBinding.inflate(layoutInflater)
         val view = binding.root
 
+        setSupportActionBar(binding.toolbarMenuCliente)
+        supportActionBar?.setDisplayShowTitleEnabled(false);
         setContentView(view)
-
-        iniciarMenu()
     }
 
-    private fun iniciarMenu(){
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        val intent : Intent = intent
-        val userName = intent.getStringExtra("nombre_del_usuario")
-        binding.tituloMenuPrincipalCliente.text = "Bienvenido al menu $userName"
-
-        iniciarSistema(sistemaPrincipal)
-        iniciarRecyclerView()
-
+        MenuInflater(this).inflate(R.menu.menu_drawer_cliente, menu)
+        return true
     }
 
-    private fun iniciarRecyclerView(){
-        binding.rvRegistroDeLlamadaPorCliente.layoutManager = LinearLayoutManager(this)
-        binding.rvRegistroDeLlamadaPorCliente.setHasFixedSize(true)
-        val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(Cliente(1))
-            ?.let { AdapterListaDeLlamadasPorCliente(it) }
-        binding.rvRegistroDeLlamadaPorCliente.adapter = customAdapter
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId){
 
-    }
+            R.id.nav_home_cliente -> {
 
-    private fun iniciarSistema(sistema: Sistema) {
-
-        sistema.darDeAltaCliente(1,"cliente 1", "", LocalDate.now())
-
-        val listaDeClientes = sistema.obtenerListaDeClientes()
-        var contador = 1
-
-        listaDeClientes.forEach { cliente ->
-
-            repeat(20){
-            if(contador % 2 == 0) {
-                sistema.realizarLlamada(cliente, "06-06-2020", "22:00:00", 550.0, 'I')
-
-            }else {
-                sistema.realizarLlamada(cliente, "09-10-2020", "12:00:00", 122.0, 'L')
-            }
-                contador++
+                iniciarFragmentoClienteHome()
+                true
             }
 
+            R.id.nav_makecall_client -> {
+
+                iniciarFragmentoDeLlamada()
+                true
+            }
+
+            R.id.nav_logout_cliente -> {
+
+                volverAInicioSesion()
+                true
+            }
+        else -> {
+
+            Toast.makeText(this, item.title,Toast.LENGTH_SHORT).show()
+            true
         }
+    }
 
+    private fun iniciarFragmentoDeLlamada(){
 
+        val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
+
+            navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment)
+
+    }
+
+    private fun iniciarFragmentoClienteHome() {
+
+        val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
+
+            navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
+    }
+
+    private fun volverAInicioSesion(){
+
+        val intent = Intent(this, InicioDeSesion::class.java)
+        startActivity(intent)
     }
 }
+
+
+

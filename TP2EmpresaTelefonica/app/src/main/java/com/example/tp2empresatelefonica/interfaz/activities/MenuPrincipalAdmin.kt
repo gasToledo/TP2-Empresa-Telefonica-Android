@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -18,14 +19,14 @@ import com.example.tp2empresatelefonica.clases.sistema.Sistema
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalAdminBinding
 import com.example.tp2empresatelefonica.interfaz.adapters.AdapterListaDeClientes
 import com.example.tp2empresatelefonica.interfaz.fragments.MenuAdmin
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
+import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
 import java.time.LocalDate
 
 class MenuPrincipalAdmin : AppCompatActivity() {
 
     private lateinit var binding: MenuPrincipalAdminBinding
     private val sistemaPrincipal = Sistema()
-    private lateinit var clienteSeleccionado : Cliente
-    private var listaDeClientes  = mutableListOf<Cliente>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,21 +71,23 @@ class MenuPrincipalAdmin : AppCompatActivity() {
             }
 
             else -> {
-                super.onOptionsItemSelected(item)
+
+                Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+                false
             }
         }
 
     private fun iniciarFragmentoAgregarCliente() {
 
-        val navController = Navigation.findNavController(binding.navHostFragmentContainer)
 
+        val navController = Navigation.findNavController(binding.navHostFragmentContainerAdmin)
         navController.navigate(R.id.action_menuAdmin_to_agregarClienteFragment)
     }
 
 
     private fun iniciarFragmentoQuitarCliente(){
 
-        val navController = Navigation.findNavController(binding.navHostFragmentContainer)
+        val navController = Navigation.findNavController(binding.navHostFragmentContainerAdmin)
 
         navController.navigate(R.id.action_menuAdmin_to_quitarClienteFragment)
     }
@@ -99,31 +102,7 @@ class MenuPrincipalAdmin : AppCompatActivity() {
 
     private fun iniciarSistema(sistema : Sistema){
 
-        var codigoCliente = 1
-
-        repeat(15){
-            sistema.darDeAltaCliente(codigoCliente,"Cliente $codigoCliente","", LocalDate.now())
-            codigoCliente++
-        }
-
-        sistema.darDeAltaCliente(340,"Cliente $codigoCliente","", LocalDate.of(2019,6,6))
-        sistema.darDeAltaCliente(12023,"Cliente ${codigoCliente + 1}","", LocalDate.of(2020,11,6))
-
-        listaDeClientes = sistema.obtenerListaDeClientes()
-
-        listaDeClientes.forEach { cliente ->
-
-            if(cliente.codigoDeCliente() % 2 == 0) {
-                repeat(10) {
-                    sistema.realizarLlamada(cliente, "06-06-2020", "22:00", 550.0, 'I')
-                }
-            }else {
-                repeat(10){
-                    sistema.realizarLlamada(cliente, "10-09-2020", "12:00", 122.0, 'L')
-                }
-            }
-        }
-
+        sistema.iniciarClientesPredeterminados()
 
     }
 

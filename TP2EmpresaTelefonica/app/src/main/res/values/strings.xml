@@ -6,7 +6,7 @@
     <string name="ingrese_usuario">Ingrese usuario</string>
     <string name="olvide_clave">Olvide clave</string>
     <string name="registrarse">Registrarse</string>
-    <string name="menu_principal_admin">Bienvenido al menu</string>
+    <string name="menu_principal_admin">Datos de clientes</string>
     <string name="ingresa_codigo_cliente">Ingresa codigo cliente</string>
     <string name="nombre">Nombre</string>
     <string name="tipo_de_cliente">Tipo de cliente</string>
@@ -42,4 +42,8 @@
     <string name="ingresar_id">Ingresar ID</string>
     <string name="eliminar_cliente">Eliminar cliente</string>
     <string name="eliminar">Eliminar</string>
+    <string name="menu_cliente_home">Home</string>
+    <string name="menu_cliente_realizarLlamada">Realizar llamada</string>
+    <string name="menu_cliente_salir">Salir</string>
+    <string name="toolbar_title_menu_cliente">Menu cliente</string>
 </resources>

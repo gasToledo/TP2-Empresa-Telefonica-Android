@@ -3,10 +3,12 @@ package com.example.tp2empresatelefonica.interfaz.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tp2empresatelefonica.R
+import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.clases.llamada.Llamada
 import java.math.RoundingMode
 import java.time.ZoneId
@@ -25,7 +27,7 @@ class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<
         val duracionDeLaLlamada : TextView
         val costoDeLaLlamada : TextView
         val tipoDeLlamada : TextView
-        val mensaje = Toast.makeText(view.context, "Error tipo de llamada invalido", Toast.LENGTH_SHORT).show()
+        val contenedorDeDatos : LinearLayout
 
         init {
             fechaDeLlamada = view.findViewById(R.id.rvFechaDeLlamada)
@@ -33,6 +35,7 @@ class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<
             duracionDeLaLlamada = view.findViewById(R.id.rvDuracionDeLaLlamada)
             costoDeLaLlamada = view.findViewById(R.id.rvCostoDeLlamada)
             tipoDeLlamada = view.findViewById(R.id.rvTipoDeLlamada)
+            contenedorDeDatos = view.findViewById(R.id.contenedorDeRvCliente)
         }
     }
 
@@ -67,10 +70,9 @@ class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<
             'I' -> {
                 holder.tipoDeLlamada.text = "Internacional"
             }
-
-            else -> holder.mensaje
             
         }
+
     }
 
     override fun getItemCount(): Int = listaDeLlamadas.size
