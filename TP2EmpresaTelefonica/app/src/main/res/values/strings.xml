@@ -4,32 +4,20 @@
     <string name="ingresar">Ingresar</string>
     <string name="ingresar_clave">Ingresar clave</string>
     <string name="ingrese_usuario">Ingrese usuario</string>
-    <string name="olvide_clave">Olvide clave</string>
-    <string name="registrarse">Registrarse</string>
     <string name="menu_principal_admin">Datos de clientes</string>
-    <string name="ingresa_codigo_cliente">Ingresa codigo cliente</string>
     <string name="nombre">Nombre</string>
     <string name="tipo_de_cliente">Tipo de cliente</string>
     <string name="costo_total_llamadas">Costo total llamadas</string>
-    <string name="title_activity_menu_principal_admin">MenuPrincipalAdmin</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="admin">admin?</string>
     <string name="menuClienteBienvenido">Bienvenido</string>
     <string name="fecha_de_llamada">Fecha de llamada</string>
     <string name="horario_de_llamada">Horario de llamada</string>
-    <string name="duracion_de_la_llamada">Duracion de la llamada</string>
+    <string name="duracion_de_la_llamada">Duracion de llamada</string>
     <string name="tipo_de_llamada">Tipo de llamada</string>
-    <string name="costo_de_la_llamada">Costo de la llamada</string>
-    <string name="historial_de_llamadas">Historial de llamadas:</string>
+    <string name="costo_de_la_llamada">Costo de llamada</string>
+    <string name="historial_de_llamadas">Historial de llamadas</string>
     <string name="agregar_cliente">Agregar cliente</string>
     <string name="quitar_cliente">Quitar cliente</string>
     <string name="salir">Salir</string>
@@ -46,4 +34,11 @@
     <string name="menu_cliente_realizarLlamada">Realizar llamada</string>
     <string name="menu_cliente_salir">Salir</string>
     <string name="toolbar_title_menu_cliente">Menu cliente</string>
+    <string name="ingresar_llamada_nueva">Ingresar llamada nueva</string>
+    <string name="ingresar_fecha_de_llamada">Fecha de llamada</string>
+    <string name="ingresar_horario_de_llamada">Horario de llamada</string>
+    <string name="ingresar_duracion_de_llamada">Duracion de llamada</string>
+    <string name="ingresar_tipo_de_llamada">Tipo de llamada</string>
+    <string name="fragmento_llamar">Llamar</string>
+    <string name="fragmento_llamada_volver">Volver</string>
 </resources>

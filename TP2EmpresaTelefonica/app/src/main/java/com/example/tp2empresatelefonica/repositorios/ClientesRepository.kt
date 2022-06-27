@@ -1,11 +1,7 @@
 package com.example.tp2empresatelefonica.repositorios
 
-import android.widget.Toast
-import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
-import com.example.tp2empresatelefonica.clases.llamada.Llamada
-import com.example.tp2empresatelefonica.excepciones.ClienteExistente
-import com.example.tp2empresatelefonica.excepciones.NoExisteCliente
+
 import java.time.LocalDate
 
 object ClientesRepository {
@@ -37,7 +33,7 @@ object ClientesRepository {
             )
     }
 
-    fun obtenerCliente(id : Int) : Cliente {
+    fun obtenerCliente(id : Int) : Cliente? {
 
         listaDeClientes.forEach {
             cliente ->
@@ -47,7 +43,7 @@ object ClientesRepository {
                 return cliente
             }
         }
-        throw NoExisteCliente("[ERROR] No existe el cliente.")
+        return null
     }
 
     fun obtenerListaDeClientes() : MutableList<Cliente> {
@@ -55,29 +51,14 @@ object ClientesRepository {
         return listaDeClientes
     }
 
-    fun agregarClientes(id: Int, nombre : String, apellido : String) : Boolean {
+    fun agregarCliente(id: Int, nombre : String, apellido : String){
 
-        listaDeClientes.forEach {
-            cliente ->
-            if(cliente.codigoDeCliente() != id){
-                listaDeClientes.add(Cliente(id,nombre,apellido))
-                return true
-            }
-        }
-        throw ClienteExistente("[ERROR] Ya existe este cliente.")
+        listaDeClientes.add(Cliente(id,nombre,apellido))
     }
 
-    fun removerClientes(id: Int) : Boolean{
+    fun removerClientes(id: Int) {
 
-        listaDeClientes.forEach {
-            cliente ->
-            if(cliente.codigoDeCliente() == id){
-                listaDeClientes.remove(cliente)
-                return true
-            }
-        }
-
-        throw NoExisteCliente("[ERROR] Cliente no existente")
+       listaDeClientes.remove(obtenerCliente(id))
     }
 
 

@@ -42,5 +42,19 @@ object LlamadasRepository {
         return listaDeLlamadas
     }
 
+    fun agregarLlamada(codigoCliente : Int, fecha : LocalDate, horario : LocalTime, duracion : Double, tipoLlamada : Char)  {
+
+            listaDeLlamadas.add(
+                LlamadaRegular(
+                    codigoCliente,
+                    fecha,
+                    horario,
+                    duracion,
+                    tipoLlamada
+                )
+            )
+
+    }
+
 
 }

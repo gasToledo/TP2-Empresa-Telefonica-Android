@@ -1,13 +1,12 @@
 package com.example.tp2empresatelefonica.interfaz.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.navigation.NavDestination
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalClienteBinding

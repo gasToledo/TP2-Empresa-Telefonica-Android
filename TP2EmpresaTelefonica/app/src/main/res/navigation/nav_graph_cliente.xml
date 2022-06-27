@@ -16,9 +16,8 @@
     </fragment>
     <fragment
         android:id="@+id/realizarLlamadaFragment"
-        android:name="com.example.tp2empresatelefonica.RealizarLlamadaFragment"
-        android:label="fragment_realizar_llamada"
-        tools:layout="@layout/fragment_realizar_llamada" >
+        android:name="com.example.tp2empresatelefonica.interfaz.fragments.RealizarLlamadaFragment"
+        android:label="RealizarLlamadaFragment" >
         <action
             android:id="@+id/action_realizarLlamadaFragment_to_menuCliente"
             app:destination="@id/menuCliente" />

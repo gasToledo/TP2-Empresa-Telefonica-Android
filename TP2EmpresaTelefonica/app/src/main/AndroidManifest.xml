@@ -14,9 +14,6 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".interfaz.activities.MenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".interfaz.activities.MenuPrincipalCliente"
             android:exported="false" />
         <activity

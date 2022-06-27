@@ -1,13 +1,12 @@
 package com.example.tp2empresatelefonica.interfaz.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.tp2empresatelefonica.clases.usuarios.TipoUsuario
 import com.example.tp2empresatelefonica.clases.usuarios.Usuario
 import com.example.tp2empresatelefonica.databinding.InicioSesionBinding
-import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
 import com.example.tp2empresatelefonica.repositorios.UsersRepository
 
 class InicioDeSesion : AppCompatActivity() {
@@ -30,13 +29,6 @@ class InicioDeSesion : AppCompatActivity() {
             iniciarSesion()
         }
 
-        binding.textoRegistrarse.setOnClickListener {
-            //registrarse()
-        }
-
-        binding.textoOlvidoClave.setOnClickListener {
-            recuperarClave()
-        }
     }
 
 
@@ -80,21 +72,4 @@ class InicioDeSesion : AppCompatActivity() {
             }
 
     }
-    private fun registrarse(id : Int, nombre: String, apellido : String) {
-
-        listaDeUsuarios.forEach {
-            usuario ->
-            if(usuario.idUsuario != id){
-
-                UsersRepository.agregarUsuario(id,nombre,apellido, TipoUsuario.CLIENTE)
-            }
-        }
-
-    }
-
-    private fun recuperarClave(){
-
-    }
-
-
 }

@@ -1,14 +1,13 @@
 package com.example.tp2empresatelefonica.interfaz.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
-import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.databinding.FragmentQuitarClienteBinding
 import com.example.tp2empresatelefonica.repositorios.ClientesRepository
 
@@ -38,14 +37,15 @@ class QuitarClienteFragment : Fragment() {
 
                 Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
             }
-            else if(ClientesRepository.removerClientes(binding.quitarClienteId.text.toString().toInt())){
-                Toast.makeText(binding.root.context, "El cliente de id: ${binding.quitarClienteId.text}, ha sido removido con exito", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
+            else if(comprobarExistenciaCliente(binding.quitarClienteId.text.toString().toInt())){
+
+                ClientesRepository.removerClientes(binding.quitarClienteId.text.toString().toInt())
+                Toast.makeText(binding.root.context, "El cliente ha sido eliminado.", Toast.LENGTH_SHORT).show()
 
             }
             else{
 
-                Toast.makeText(binding.root.context, "Cliente no existente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(binding.root.context, "Cliente no se encuentra registrado", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -53,5 +53,10 @@ class QuitarClienteFragment : Fragment() {
             navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
         }
 
+    }
+
+    private fun comprobarExistenciaCliente(clienteId : Int): Boolean {
+
+        return ClientesRepository.obtenerCliente(clienteId) != null
     }
 }

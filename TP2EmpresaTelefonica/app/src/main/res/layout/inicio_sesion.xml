@@ -63,71 +63,13 @@
         android:id="@+id/botonIngresar"
         android:text="@string/ingresar"
         android:textSize="25sp"
-        android:backgroundTint="@color/red_200"
         android:ems="8"
         app:layout_constraintTop_toBottomOf="@id/ingresarContra"
-        app:layout_constraintBottom_toTopOf="@+id/textosClickeables"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         >
     </Button>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/verficarAdmin"
-        android:text="@string/admin"
-        android:textSize="20sp"
-        android:textStyle="italic"
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/textosClickeables"
-        app:layout_constraintTop_toBottomOf="@+id/botonIngresar">
-    </CheckBox>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textosClickeables"
-        android:orientation="horizontal"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/botonIngresar"
-        >
-
-        <TextView
-            android:id="@+id/textoOlvidoClave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-
-            android:clickable="true"
-            android:focusable="true"
-
-            android:text="@string/olvide_clave"
-            android:textColor="@color/clickeable_blue"
-            android:textSize="20sp"
-            tools:ignore="TouchTargetSizeCheck">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/textoRegistrarse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/registrarse"
-
-            android:textColor="@color/clickeable_blue"
-            android:textSize="20sp"
-            tools:ignore="TouchTargetSizeCheck">
-
-        </TextView>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

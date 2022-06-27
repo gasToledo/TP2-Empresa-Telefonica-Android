@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.fragment.app.*
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
-import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.databinding.FragmentAgregarClienteBinding
 import com.example.tp2empresatelefonica.repositorios.ClientesRepository
 
@@ -17,8 +15,6 @@ import com.example.tp2empresatelefonica.repositorios.ClientesRepository
 class AgregarClienteFragment : Fragment() {
 
     private lateinit var binding : FragmentAgregarClienteBinding
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,18 +38,30 @@ class AgregarClienteFragment : Fragment() {
 
                 Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
             }
-            else if(ClientesRepository.agregarClientes(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString())){
-                Toast.makeText(binding.root.context, "${binding.agregarClienteNombre.text}, ${binding.agregarClienteApellido.text} a sido añadido con exito.", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
+            else if(!comprobarExistenciaCliente(binding.agregarClienteId.text.toString().toInt())) {
+
+                ClientesRepository.agregarCliente(id,binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString())
+                Toast.makeText(binding.root.context,"Agregado con exito",Toast.LENGTH_SHORT).show()
             }
-            else {
-                Toast.makeText(binding.root.context, "Cliente ya registrado", Toast.LENGTH_SHORT).show()
+            else{
+                Toast.makeText(binding.root.context,"El cliente ya se encuentra registrado.",Toast.LENGTH_SHORT).show()
+
             }
+
+
+
         }
 
         binding.agregarClienteButtonSalir.setOnClickListener {
             navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
+
         }
+
+    }
+
+    private fun comprobarExistenciaCliente(clienteId : Int): Boolean {
+
+        return ClientesRepository.obtenerCliente(clienteId) != null
     }
 
 

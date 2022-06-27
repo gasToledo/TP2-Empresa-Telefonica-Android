@@ -12,7 +12,7 @@
         android:id="@+id/tituloMenuPrincipalCliente"
         android:text="@string/menuClienteBienvenido"
         android:textSize="30sp"
-        android:textStyle="normal"
+        android:textStyle="bold"
 
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
@@ -28,12 +28,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/tituloMenuPrincipalCliente2"
         android:text = "@string/historial_de_llamadas"
-        android:textSize="20sp"
-        android:layout_marginStart="15dp"
+        android:textSize="25sp"
+
         android:layout_marginBottom="20dp"
 
 
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloMenuPrincipalCliente"
         app:layout_constraintBottom_toTopOf="@+id/guidelineRvCliente"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -54,13 +56,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="205dp" />
+        app:layout_constraintGuide_begin="160dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRvCliente2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="123dp" />
+        app:layout_constraintGuide_end="48dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
