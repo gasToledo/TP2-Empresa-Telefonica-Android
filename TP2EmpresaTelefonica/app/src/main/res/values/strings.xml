@@ -41,4 +41,6 @@
     <string name="ingresar_tipo_de_llamada">Tipo de llamada</string>
     <string name="fragmento_llamar">Llamar</string>
     <string name="fragmento_llamada_volver">Volver</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -7,15 +7,19 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
+import androidx.fragment.app.commit
 import androidx.navigation.Navigation
 import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalClienteBinding
+import com.example.tp2empresatelefonica.interfaz.fragments.MenuCliente
+import com.example.tp2empresatelefonica.interfaz.fragments.RealizarLlamadaFragment
 
 
 class MenuPrincipalCliente : AppCompatActivity() {
 
     private lateinit var binding: MenuPrincipalClienteBinding
-
+    private val claveMensaje = "USER_ID"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,10 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbarMenuCliente)
         supportActionBar?.setDisplayShowTitleEnabled(false);
+
+        val intent = intent
+        val informacionLlego : Bundle? = intent.extras
+
         setContentView(view)
     }
 
@@ -62,17 +70,27 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
     private fun iniciarFragmentoDeLlamada(){
 
-        val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
-            navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment)
+
+        val intent = intent
+        val informacionLlego : Bundle? = intent.extras
+
+
+            val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
+            navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment, informacionLlego)
+
 
     }
 
     private fun iniciarFragmentoClienteHome() {
 
+        val intent = intent
+        val informacionLlego : Bundle? = intent.extras
         val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
-            navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
+        navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente,informacionLlego)
+
+
     }
 
     private fun volverAInicioSesion(){

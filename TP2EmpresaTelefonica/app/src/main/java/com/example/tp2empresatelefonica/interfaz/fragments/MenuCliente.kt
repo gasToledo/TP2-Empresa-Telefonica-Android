@@ -18,6 +18,7 @@ class MenuCliente : Fragment() {
     private lateinit var binding: FragmentMenuClienteBinding
     private val sistemaPrincipal = Sistema()
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,30 +26,44 @@ class MenuCliente : Fragment() {
     ): View {
         binding = FragmentMenuClienteBinding.inflate(inflater, container, false)
 
+
         iniciarMenu()
         return binding.root
     }
 
     private fun iniciarMenu() {
 
+        val claveMensaje = "USER_ID"
+        val bundle = arguments
+        val usuarioIniciado = bundle!!.getInt(claveMensaje)
+
+        println("llego $usuarioIniciado")
 
         binding.tituloMenuPrincipalCliente.text = "Bienvenido ${
-            ClientesRepository.obtenerCliente(1)
+            ClientesRepository.obtenerCliente(usuarioIniciado)
                 ?.nombreDeCliente()
         }"
 
         iniciarSistema(sistemaPrincipal)
-        iniciarRecyclerView()
+        iniciarRecyclerView(usuarioIniciado)
 
     }
 
-    private fun iniciarRecyclerView() {
+    private fun iniciarRecyclerView(id : Int) {
         binding.rvRegistroDeLlamadaPorCliente.layoutManager =
             LinearLayoutManager(binding.root.context)
         binding.rvRegistroDeLlamadaPorCliente.setHasFixedSize(true)
-        val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(1)
-            ?.let { AdapterListaDeLlamadasPorCliente(it) }
-        binding.rvRegistroDeLlamadaPorCliente.adapter = customAdapter
+
+        if(id > 0) {
+            val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(id)
+                ?.let { AdapterListaDeLlamadasPorCliente(it) }
+            binding.rvRegistroDeLlamadaPorCliente.adapter = customAdapter
+        } else {
+            val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(1)
+                ?.let { AdapterListaDeLlamadasPorCliente(it) }
+            binding.rvRegistroDeLlamadaPorCliente.adapter = customAdapter
+        }
+
 
     }
 

@@ -8,13 +8,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
+import com.example.tp2empresatelefonica.clases.sistema.Sistema
+import com.example.tp2empresatelefonica.clases.usuarios.TipoUsuario
 import com.example.tp2empresatelefonica.databinding.FragmentAgregarClienteBinding
 import com.example.tp2empresatelefonica.repositorios.ClientesRepository
+import com.example.tp2empresatelefonica.repositorios.UsersRepository
+import java.time.LocalDate
 
 
 class AgregarClienteFragment : Fragment() {
 
     private lateinit var binding : FragmentAgregarClienteBinding
+    private val sistema = Sistema()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,16 +45,16 @@ class AgregarClienteFragment : Fragment() {
             }
             else if(!comprobarExistenciaCliente(binding.agregarClienteId.text.toString().toInt())) {
 
-                ClientesRepository.agregarCliente(id,binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString())
+                /*ClientesRepository.agregarCliente(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString())*/
+                sistema.darDeAltaCliente(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString(), LocalDate.now())
+                UsersRepository.agregarUsuario(binding.agregarClienteId.text.toString().toInt(), binding.agregarClienteNombre.text.toString(), binding.agregarClienteNombre.text.toString(), TipoUsuario.CLIENTE)
+
                 Toast.makeText(binding.root.context,"Agregado con exito",Toast.LENGTH_SHORT).show()
             }
             else{
                 Toast.makeText(binding.root.context,"El cliente ya se encuentra registrado.",Toast.LENGTH_SHORT).show()
 
             }
-
-
-
         }
 
         binding.agregarClienteButtonSalir.setOnClickListener {

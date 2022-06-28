@@ -101,19 +101,6 @@
             android:layout_marginStart="5dp"
             style="?android:attr/buttonBarButtonStyle" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/volver_menu_cliente"
-            android:textSize="22sp"
-            android:text="@string/fragmento_llamada_volver"
-            android:ems="7"
-            android:layout_marginEnd="5dp"
-            style="?android:attr/buttonBarButtonStyle" />
-
-
     </LinearLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,10 +12,6 @@ import com.example.tp2empresatelefonica.repositorios.UsersRepository
 class InicioDeSesion : AppCompatActivity() {
 
     private lateinit var binding : InicioSesionBinding
-    private val claveMensaje : String = "tipoDeUsuario"
-
-    private val listaDeUsuarios = UsersRepository.obtenerListaUsuarios()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,39 +27,28 @@ class InicioDeSesion : AppCompatActivity() {
 
     }
 
-
-
-    private fun obtenerUsuario(nombre : String, clave : String) : Usuario? {
-
-
-        listaDeUsuarios.forEach {
-            usuario ->
-            if(usuario.user == nombre && usuario.password == clave){
-                return usuario
-            }
-        }
-        return null
-    }
-
-
     private fun iniciarSesion() {
 
-            val auxUsuario : Usuario? = obtenerUsuario(binding.ingresarUsuario.text.toString(), binding.ingresarContra.text.toString())
 
-            if (auxUsuario != null) {
+        val claveMensaje : String = "USER_ID"
+        val bundle = Bundle()
 
 
-                if (auxUsuario.tipoUsuario == TipoUsuario.ADMINISTRADOR) {
+        val usuarioFinal = UsersRepository.obtenerUsuario(binding.ingresarUsuario.text.toString(), binding.ingresarContra.text.toString())
+
+            if (usuarioFinal != null) {
+
+                if (usuarioFinal.tipoUsuario == TipoUsuario.ADMINISTRADOR) {
 
                     val intent = Intent(this, MenuPrincipalAdmin::class.java)
-                    intent.putExtra(claveMensaje, binding.ingresarUsuario.text.toString())
                     startActivity(intent)
 
                 }
                 else {
 
+                    bundle.putInt(claveMensaje,usuarioFinal.idUsuario)
                     val intent = Intent(this, MenuPrincipalCliente::class.java)
-                    intent.putExtra(claveMensaje, binding.ingresarUsuario.text.toString())
+                    intent.putExtras(bundle)
                     startActivity(intent)
                 }
             }
@@ -72,4 +57,7 @@ class InicioDeSesion : AppCompatActivity() {
             }
 
     }
+
+
 }
+

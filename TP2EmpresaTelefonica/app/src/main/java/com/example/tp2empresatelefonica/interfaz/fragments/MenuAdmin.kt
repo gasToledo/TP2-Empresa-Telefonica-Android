@@ -27,14 +27,9 @@ class MenuAdmin : Fragment() {
 
     private fun iniciarMenu(){
 
-        /*val intent : Intent = intent
-        val userName = intent.getStringExtra("nombre_del_usuario")
-
-        binding.tituloMenuPrincipalAdmin.text = "Bienvenido al menu $userName"*/
         iniciarSistema(sistemaPrincipal)
 
         iniciarRecyclerView()
-
     }
 
     private fun iniciarRecyclerView(){
@@ -48,33 +43,6 @@ class MenuAdmin : Fragment() {
     private fun iniciarSistema(sistema : Sistema){
 
         sistema.iniciarClientesPredeterminados()
-        /*
-        var codigoCliente = 1
-
-        repeat(15){
-            sistema.darDeAltaCliente(codigoCliente,"Cliente $codigoCliente","", LocalDate.now())
-            codigoCliente++
-        }
-
-        sistema.darDeAltaCliente(340,"Cliente $codigoCliente","", LocalDate.of(2019,6,6))
-        sistema.darDeAltaCliente(12023,"Cliente ${codigoCliente + 1}","", LocalDate.of(2020,11,6))
-
-        val listaDeClientes = sistema.obtenerListaDeClientes()
-
-        listaDeClientes.forEach { cliente ->
-
-            if(cliente.codigoDeCliente() % 2 == 0) {
-                repeat(10) {
-                    sistema.realizarLlamada(cliente, "06-06-2020", "22:00", 550.0, 'I')
-                }
-            }else {
-                repeat(10){
-                    sistema.realizarLlamada(cliente, "10-09-2020", "12:00", 122.0, 'L')
-                }
-            }
-        }*/
-
-
     }
 
 }

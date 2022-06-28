@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.databinding.FragmentQuitarClienteBinding
 import com.example.tp2empresatelefonica.repositorios.ClientesRepository
+import com.example.tp2empresatelefonica.repositorios.UsersRepository
 
 class QuitarClienteFragment : Fragment() {
 
@@ -40,6 +41,8 @@ class QuitarClienteFragment : Fragment() {
             else if(comprobarExistenciaCliente(binding.quitarClienteId.text.toString().toInt())){
 
                 ClientesRepository.removerClientes(binding.quitarClienteId.text.toString().toInt())
+                UsersRepository.removerUsuario(binding.quitarClienteId.text.toString().toInt())
+
                 Toast.makeText(binding.root.context, "El cliente ha sido eliminado.", Toast.LENGTH_SHORT).show()
 
             }

@@ -32,7 +32,6 @@ object LlamadasRepository {
                 LlamadaRegular(1, LocalDate.of(2022,3,13), LocalTime.of(15,40,30),400.0,'I'),
                 LlamadaRegular(1, LocalDate.of(2022,3,13), LocalTime.of(16,40,30),400.0,'L'),
                 LlamadaFinDeSemana(1, LocalDate.of(2021,6,6), LocalTime.of(10,25,10),100.0,'I')
-
             )
         )
     }
@@ -54,6 +53,11 @@ object LlamadasRepository {
                 )
             )
 
+    }
+
+    fun agregarLlamada(llamada: Llamada) {
+
+        listaDeLlamadas.add(llamada)
     }
 
 

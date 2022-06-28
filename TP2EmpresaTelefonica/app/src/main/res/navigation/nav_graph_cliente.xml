@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_menuCliente_to_realizarLlamadaFragment"
             app:destination="@id/realizarLlamadaFragment" />
+        <argument
+            android:name="USER_ID"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/realizarLlamadaFragment"
@@ -22,4 +26,7 @@
             android:id="@+id/action_realizarLlamadaFragment_to_menuCliente"
             app:destination="@id/menuCliente" />
     </fragment>
+    <argument
+        android:name="USER_ID"
+        android:defaultValue="1" />
 </navigation>

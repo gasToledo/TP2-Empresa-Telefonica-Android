@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.tp2empresatelefonica.R
+import com.example.tp2empresatelefonica.clases.sistema.Sistema
 import com.example.tp2empresatelefonica.databinding.FragmentRealizarLlamadaBinding
-import com.example.tp2empresatelefonica.repositorios.LlamadasRepository
+import com.example.tp2empresatelefonica.repositorios.ClientesRepository
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -20,6 +22,7 @@ class RealizarLlamadaFragment : Fragment() {
 
 
     private lateinit var  binding : FragmentRealizarLlamadaBinding
+    private val sistema = Sistema()
     private val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
@@ -27,9 +30,9 @@ class RealizarLlamadaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
 
         binding = FragmentRealizarLlamadaBinding.inflate(inflater,container,false)
+        sistema.iniciarClientesPredeterminados()
         return binding.root
 
     }
@@ -40,6 +43,12 @@ class RealizarLlamadaFragment : Fragment() {
 
 
         val navController : NavController = view.findNavController()
+        val claveMensaje = "USER_ID"
+
+        val bundle = arguments
+        val userId = bundle!!.getInt(claveMensaje)
+
+        println("llego $userId")
 
         binding.ingresarFechaLlamada.setOnClickListener {
             val fecha = DatePickerFragment {year, month, day -> mostrarFecha(year, month, day)}
@@ -51,63 +60,23 @@ class RealizarLlamadaFragment : Fragment() {
             horario.show(parentFragmentManager,"TimePicker")
         }
 
-
-        binding.volverMenuCliente.setOnClickListener {
-
-            navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
-        }
-
         binding.hacerLlamada.setOnClickListener {
 
             val fechaSeleccionada : String = binding.ingresarFechaLlamada.text.toString()
             val horarioSeleccionado : String = binding.ingresarHorarioLlamada.text.toString()
 
-            LlamadasRepository.agregarLlamada(1,
-                LocalDate.parse(fechaSeleccionada, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
-                LocalTime.parse(horarioSeleccionado,DateTimeFormatter.ofPattern("HH:mm")),
+
+                val cliente = sistema.obtenerCliente(userId)
+
+                sistema.realizarLlamada(cliente,
+                fechaSeleccionada,
+                horarioSeleccionado,
                 binding.ingresarDuracionLlamada.text.toString().toDouble(),
                 binding.ingresarTipoLlamada.text.toString().first()
             )
 
-        }
-
-
-        /*
-        binding.volverMenuCliente.setOnClickListener {
-
-            navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
-        }
-
-        binding.hacerLlamada.setOnClickListener {
-
-            if(binding.ingresarFechaLlamada.text.isNullOrEmpty()
-                || binding.ingresarHorarioLlamada.text.isNullOrEmpty()
-                || binding.ingresarDuracionLlamada.text.isNullOrEmpty()
-                || binding.ingresarTipoLlamada.text.isNullOrEmpty() ){
-
-                Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(binding.root.context, "Llamada OK", Toast.LENGTH_SHORT).show()
             }
-            else if(LlamadasRepository.agregarLlamada(1,
-                    LocalDate.parse(binding.ingresarFechaLlamada.text.toString()),
-                    LocalTime.parse(binding.ingresarHorarioLlamada.text.toString()),
-                    binding.ingresarDuracionLlamada.text.toString().toDouble(),
-                    binding.ingresarTipoLlamada.text.first())){
-
-                Toast.makeText(binding.root.context, "Se ha agendado la llamada realizada el ${binding.ingresarFechaLlamada.text}", Toast.LENGTH_SHORT).show()
-                navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
-            }
-            else{
-                Toast.makeText(binding.root.context, "Error al realizar llamada", Toast.LENGTH_SHORT).show()
-            }
-        }
-        */
-
-        binding.volverMenuCliente.setOnClickListener {
-
-            navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
-        }
-
-
 
     }
 

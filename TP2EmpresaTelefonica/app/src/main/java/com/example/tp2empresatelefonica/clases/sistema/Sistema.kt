@@ -26,18 +26,34 @@ class Sistema {
 
     private val listaClientes = mutableMapOf<Cliente,MutableList<Llamada>>()
 
+
     private fun ingresarClientes(alta : Cliente) {
         val historialLlamadas = mutableListOf<Llamada>()
+
+        if(ClientesRepository.obtenerCliente(alta.codigoDeCliente()) == null) {
+            ClientesRepository.agregarCliente(
+                alta.codigoDeCliente(),
+                alta.nombreDeCliente(),
+                alta.apellidoDeCliente()
+            )
+        }
+
         listaClientes[alta] = historialLlamadas
     }
 
     fun iniciarClientesPredeterminados() {
 
-        val listaAux = ClientesRepository.obtenerListaDeClientes()
+        ClientesRepository.obtenerListaDeClientes().forEach { cliente ->
 
-        listaAux.forEach {
+            ingresarClientes(cliente)
 
-            listaClientes[it] = LlamadasRepository.obtenerListaDeLlamadas()
+            LlamadasRepository.obtenerListaDeLlamadas().forEach { llamada ->
+
+                if (llamada.codigo_cliente == cliente.codigoDeCliente()) {
+
+                    listaClientes[cliente]?.add(llamada)
+                }
+            }
         }
     }
 
@@ -71,7 +87,7 @@ class Sistema {
 
         var time : LocalTime = LocalTime.now()
         try {
-             time = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm:ss"))
+             time = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm"))
         }catch (e:DateTimeException){
             println(e.message)
         }
@@ -84,7 +100,7 @@ class Sistema {
          var date : LocalDate = LocalDate.now()
 
         try {
-            val dateAux = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+            val dateAux = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             date = if (dateAux.isAfter(LocalDate.now())) LocalDate.now() else dateAux
         } catch (e : DateTimeParseException) {
             println(e.message)
@@ -104,16 +120,16 @@ class Sistema {
     fun darDeAltaCliente(codigo : Int, nombre : String, apellido : String, date : LocalDate) {
 
         val clienteAlta = Cliente(codigo, nombre, apellido, date)
+
         ingresarClientes(clienteAlta)
     }
 
-    private fun obtenerCliente(codigo: Int) : Cliente {
+    fun obtenerCliente(codigo: Int) : Cliente {
         listaClientes.keys.forEach {
             if(it.codigoDeCliente() == codigo){
                 return it
             }
         }
-
         throw NoExisteCliente("[ERROR] Cliente no existente.")
     }
 
@@ -121,19 +137,21 @@ class Sistema {
 
         verificarCliente(codigoBaja)
 
-        /*
-        val clienteEliminado = obtenerCliente(codigoBaja)*/
+        listaClientes.remove(this.obtenerCliente(codigoBaja))
 
-        ClientesRepository.removerClientes(codigoBaja)
+        if(ClientesRepository.obtenerCliente(codigoBaja) != null) {
+            ClientesRepository.removerClientes(codigoBaja)
+        }
     }
 
     private fun ingresarLlamadaACliente(cliente: Cliente, llamada : Llamada){
 
         verificarCliente(cliente)
-        listaClientes[cliente]?.add(llamada)
+        LlamadasRepository.agregarLlamada(llamada)
+        //listaClientes[cliente]?.add(llamada)
     }
 
-    fun realizarLlamada(cliente : Cliente, fecha : String, hora : String, duracion : Double, tipo : Char){
+    fun realizarLlamada(cliente: Cliente, fecha: String, hora: String, duracion: Double, tipo: Char){
 
         verificarCliente(cliente)
 
@@ -153,7 +171,6 @@ class Sistema {
         }
 
         this.ingresarLlamadaACliente(cliente,llamada)
-
     }
 
     private fun esFinDeSemana(fecha : LocalDate) : Boolean {
@@ -186,10 +203,6 @@ class Sistema {
 
         return costoTotal.toBigDecimal().setScale(2,RoundingMode.HALF_DOWN).toDouble()
     }
-
-
-
-
 }
 
 
