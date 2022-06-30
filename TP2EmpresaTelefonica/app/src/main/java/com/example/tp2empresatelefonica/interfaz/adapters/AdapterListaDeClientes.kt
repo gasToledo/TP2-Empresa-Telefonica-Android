@@ -12,20 +12,24 @@ import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.cliente.Cliente
 import com.example.tp2empresatelefonica.clases.sistema.Sistema
 
-class AdapterListaDeClientes(private val listaClientes: MutableList<Cliente>, private val sistema: Sistema, val enviarCliente: (Cliente) -> Unit) :
+class AdapterListaDeClientes(
+    private val listaClientes: MutableList<Cliente>,
+    private val sistema: Sistema,
+    val enviarCliente: (Cliente) -> Unit
+) :
     RecyclerView.Adapter<AdapterListaDeClientes.ViewHolder>() {
 
-    class ViewHolder(view :View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val nombreCliente : TextView
-        val tipoDeCliente : TextView
-        val costoTotalDeLlamadasCliente : TextView
-        val vista : LinearLayout
+        val nombreCliente: TextView
+        val tipoDeCliente: TextView
+        val costoTotalDeLlamadasCliente: TextView
+        val vista: LinearLayout
 
         init {
             nombreCliente = view.findViewById(R.id.rvNombreCliente)
             tipoDeCliente = view.findViewById(R.id.rvTipoDeCliente)
-            costoTotalDeLlamadasCliente =  view.findViewById(R.id.rvCostoTotalLlamadasCliente)
+            costoTotalDeLlamadasCliente = view.findViewById(R.id.rvCostoTotalLlamadasCliente)
             vista = view.findViewById(R.id.rvLinearLayout)
         }
 
@@ -33,7 +37,7 @@ class AdapterListaDeClientes(private val listaClientes: MutableList<Cliente>, pr
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.rv_layout_admin, parent,false)
+            .inflate(R.layout.rv_layout_admin, parent, false)
 
         return ViewHolder(view)
     }
@@ -43,13 +47,14 @@ class AdapterListaDeClientes(private val listaClientes: MutableList<Cliente>, pr
 
         holder.nombreCliente.text = "Nombre: ${listaClientes[position].nombreDeCliente()}"
         holder.tipoDeCliente.text = "Estado: ${listaClientes[position].tipoCliente().name}"
-        holder.costoTotalDeLlamadasCliente.text = "Costo total de llamadas: ${sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente())}"
+        holder.costoTotalDeLlamadasCliente.text =
+            "Costo total de llamadas: ${sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente())}"
 
         holder.vista.setOnClickListener {
             enviarCliente(listaClientes[position])
         }
     }
 
-    override fun getItemCount(): Int  = listaClientes.size
+    override fun getItemCount(): Int = listaClientes.size
 
 }

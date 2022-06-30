@@ -14,18 +14,18 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
 
-class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<Llamada>):
+class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<Llamada>) :
     RecyclerView.Adapter<AdapterListaDeLlamadasPorCliente.ViewHolder>() {
 
 
-    class ViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val fechaDeLlamada : TextView
-        val horarioDeLlamada : TextView
-        val duracionDeLaLlamada : TextView
-        val costoDeLaLlamada : TextView
-        val tipoDeLlamada : TextView
-        val contenedorDeDatos : LinearLayout
+        val fechaDeLlamada: TextView
+        val horarioDeLlamada: TextView
+        val duracionDeLaLlamada: TextView
+        val costoDeLaLlamada: TextView
+        val tipoDeLlamada: TextView
+        val contenedorDeDatos: LinearLayout
 
         init {
             fechaDeLlamada = view.findViewById(R.id.rvFechaDeLlamada)
@@ -49,17 +49,24 @@ class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<
 
         holder.fechaDeLlamada.text = "Fecha: ${listaDeLlamadas[position].fecha_llamada}"
 
-        holder.horarioDeLlamada.text = "Hora: ${listaDeLlamadas[position].hora_llamada.format(
-            DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-                .withLocale(Locale.ENGLISH)
-                .withZone(ZoneId.systemDefault()))}"
+        holder.horarioDeLlamada.text = "Hora: ${
+            listaDeLlamadas[position].hora_llamada.format(
+                DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+                    .withLocale(Locale.ENGLISH)
+                    .withZone(ZoneId.systemDefault())
+            )
+        }"
 
         holder.duracionDeLaLlamada.text = "Duracion: ${listaDeLlamadas[position].duracion_llamada}"
-        holder.costoDeLaLlamada.text = "Precio: ${listaDeLlamadas[position].calcularPrecio().toBigDecimal().setScale(2,
-            RoundingMode.HALF_DOWN).toDouble()}"
+        holder.costoDeLaLlamada.text = "Precio: ${
+            listaDeLlamadas[position].calcularPrecio().toBigDecimal().setScale(
+                2,
+                RoundingMode.HALF_DOWN
+            ).toDouble()
+        }"
 
 
-        when(listaDeLlamadas[position].tipo_llamada){
+        when (listaDeLlamadas[position].tipo_llamada) {
 
             'L' -> {
                 holder.tipoDeLlamada.text = "Local"
@@ -68,7 +75,7 @@ class AdapterListaDeLlamadasPorCliente(private val listaDeLlamadas: MutableList<
             'I' -> {
                 holder.tipoDeLlamada.text = "Internacional"
             }
-            
+
         }
 
     }

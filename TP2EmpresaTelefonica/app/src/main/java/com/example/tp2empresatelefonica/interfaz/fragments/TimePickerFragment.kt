@@ -7,7 +7,8 @@ import android.widget.TimePicker
 import androidx.fragment.app.DialogFragment
 import java.util.*
 
-class TimePickerFragment(val listener: (hour : Int, minute : Int) -> Unit) : DialogFragment(), TimePickerDialog.OnTimeSetListener {
+class TimePickerFragment(val listener: (hour: Int, minute: Int) -> Unit) : DialogFragment(),
+    TimePickerDialog.OnTimeSetListener {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -17,11 +18,17 @@ class TimePickerFragment(val listener: (hour : Int, minute : Int) -> Unit) : Dia
         val minute = c.get(Calendar.MINUTE)
 
 
-        return TimePickerDialog(requireActivity(), this,hour,minute, android.text.format.DateFormat.is24HourFormat(requireActivity()))
+        return TimePickerDialog(
+            requireActivity(),
+            this,
+            hour,
+            minute,
+            android.text.format.DateFormat.is24HourFormat(requireActivity())
+        )
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        listener(hourOfDay,minute)
+        listener(hourOfDay, minute)
     }
 
 

@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-        <item
+    <item
 
-            android:id="@+id/nav_home_cliente"
-            android:icon="@drawable/ic_baseline_home_24"
-            android:title="@string/menu_cliente_home"
-            app:showAsAction="ifRoom"/>
+        android:id="@+id/nav_home_cliente"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/menu_cliente_home"
+        app:showAsAction="ifRoom" />
 
-        <item
+    <item
 
-            android:id="@+id/nav_makecall_client"
-            android:icon="@drawable/ic_baseline_add_ic_call_24"
-            android:title="@string/menu_cliente_realizarLlamada"
-            app:showAsAction="never"/>
+        android:id="@+id/nav_makecall_client"
+        android:icon="@drawable/ic_baseline_add_ic_call_24"
+        android:title="@string/menu_cliente_realizarLlamada"
+        app:showAsAction="never" />
 
-        <item
+    <item
 
-            android:id="@+id/nav_logout_cliente"
-            android:icon="@drawable/ic_baseline_login_24"
-            android:title="@string/menu_cliente_salir"
-            app:showAsAction="never"/>
+        android:id="@+id/nav_logout_cliente"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:title="@string/menu_cliente_salir"
+        app:showAsAction="never" />
 
 </menu>

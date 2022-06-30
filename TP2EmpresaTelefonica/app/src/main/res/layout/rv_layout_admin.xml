@@ -14,8 +14,8 @@
         android:layout_marginBottom="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:id="@+id/rvNombreCliente"
             android:layout_width="wrap_content"
@@ -23,8 +23,7 @@
             android:text="@string/nombre"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="5sp">
-        </TextView>
+            android:layout_marginBottom="5sp" />
 
         <TextView
             android:id="@+id/rvTipoDeCliente"
@@ -42,9 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/costo_total_llamadas"
-            android:textSize="18sp"
-            >
-        </TextView>
+            android:textSize="18sp" />
     </LinearLayout>
 
 

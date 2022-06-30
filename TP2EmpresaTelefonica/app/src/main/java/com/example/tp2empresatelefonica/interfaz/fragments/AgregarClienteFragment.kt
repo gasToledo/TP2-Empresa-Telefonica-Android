@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
-import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.clases.sistema.Sistema
 import com.example.tp2empresatelefonica.clases.usuarios.TipoUsuario
 import com.example.tp2empresatelefonica.databinding.FragmentAgregarClienteBinding
@@ -18,7 +17,7 @@ import java.time.LocalDate
 
 class AgregarClienteFragment : Fragment() {
 
-    private lateinit var binding : FragmentAgregarClienteBinding
+    private lateinit var binding: FragmentAgregarClienteBinding
     private val sistema = Sistema()
 
     override fun onCreateView(
@@ -26,7 +25,7 @@ class AgregarClienteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-       binding = FragmentAgregarClienteBinding.inflate(inflater,container,false)
+        binding = FragmentAgregarClienteBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -34,36 +33,53 @@ class AgregarClienteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = view.findNavController()
 
         binding.agregarClienteButton.setOnClickListener {
 
 
             if (binding.agregarClienteId.text.isNullOrEmpty() || binding.agregarClienteNombre.text.isNullOrEmpty() || binding.agregarClienteApellido.text.isNullOrEmpty()) {
 
-                Toast.makeText(binding.root.context, "Ingrese datos validos porfavor.", Toast.LENGTH_SHORT).show()
-            }
-            else if(!comprobarExistenciaCliente(binding.agregarClienteId.text.toString().toInt())) {
+                Toast.makeText(
+                    binding.root.context,
+                    "Ingrese datos validos porfavor.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else if (!comprobarExistenciaCliente(
+                    binding.agregarClienteId.text.toString().toInt()
+                )
+            ) {
 
-                sistema.darDeAltaCliente(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString(), LocalDate.now())
-                UsersRepository.agregarUsuario(binding.agregarClienteId.text.toString().toInt(), binding.agregarClienteNombre.text.toString(), binding.agregarClienteNombre.text.toString(), TipoUsuario.CLIENTE)
+                sistema.darDeAltaCliente(
+                    binding.agregarClienteId.text.toString().toInt(),
+                    binding.agregarClienteNombre.text.toString(),
+                    binding.agregarClienteApellido.text.toString(),
+                    LocalDate.now()
+                )
+                UsersRepository.agregarUsuario(
+                    binding.agregarClienteId.text.toString().toInt(),
+                    binding.agregarClienteNombre.text.toString(),
+                    binding.agregarClienteNombre.text.toString(),
+                    TipoUsuario.CLIENTE
+                )
 
-                Toast.makeText(binding.root.context,"Agregado con exito",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                Toast.makeText(binding.root.context,"El cliente ya se encuentra registrado.",Toast.LENGTH_SHORT).show()
+                Toast.makeText(binding.root.context, "Agregado con exito", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                Toast.makeText(
+                    binding.root.context,
+                    "El cliente ya se encuentra registrado.",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
         }
 
     }
 
-    private fun comprobarExistenciaCliente(clienteId : Int): Boolean {
+    private fun comprobarExistenciaCliente(clienteId: Int): Boolean {
 
         return ClientesRepository.obtenerCliente(clienteId) != null
     }
-
-
 
 
 }

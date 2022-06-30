@@ -34,7 +34,8 @@ class MenuCliente : Fragment() {
 
     private fun iniciarMenu() {
 
-        preferences = this.requireActivity().getSharedPreferences("CLIENTE_ID",Context.MODE_PRIVATE)
+        preferences =
+            this.requireActivity().getSharedPreferences("CLIENTE_ID", Context.MODE_PRIVATE)
         val datosCliente = preferences.getInt("CLIENTE_ID", 0)
 
 
@@ -48,12 +49,12 @@ class MenuCliente : Fragment() {
 
     }
 
-    private fun iniciarRecyclerView(id : Int) {
+    private fun iniciarRecyclerView(id: Int) {
         binding.rvRegistroDeLlamadaPorCliente.layoutManager =
             LinearLayoutManager(binding.root.context)
         binding.rvRegistroDeLlamadaPorCliente.setHasFixedSize(true)
 
-        if(id > 0) {
+        if (id > 0) {
             val customAdapter = sistemaPrincipal.obtenerListaDeLlamadasPorCliente(id)
                 ?.let { AdapterListaDeLlamadasPorCliente(it) }
             binding.rvRegistroDeLlamadaPorCliente.adapter = customAdapter

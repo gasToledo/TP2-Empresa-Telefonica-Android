@@ -43,55 +43,55 @@ class MenuPrincipalAdmin : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when(item.itemId){
+    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
 
 
-            R.id.action_home_admin -> {
+        R.id.action_home_admin -> {
 
-                volverAlMenu()
+            volverAlMenu()
 
-                true
-            }
-
-            R.id.action_agregar_cliente -> {
-
-                iniciarFragmentoAgregarCliente()
-
-                true
-            }
-
-            R.id.action_quitar_cliente -> {
-
-                iniciarFragmentoQuitarCliente()
-
-                true
-            }
-
-            R.id.action_salir_cuenta -> {
-
-                val intent = Intent(this, InicioDeSesion::class.java)
-                startActivity(intent)
-                true
-            }
-
-            else -> {
-
-                Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
-                false
-            }
+            true
         }
+
+        R.id.action_agregar_cliente -> {
+
+            iniciarFragmentoAgregarCliente()
+
+            true
+        }
+
+        R.id.action_quitar_cliente -> {
+
+            iniciarFragmentoQuitarCliente()
+
+            true
+        }
+
+        R.id.action_salir_cuenta -> {
+
+            val intent = Intent(this, InicioDeSesion::class.java)
+            startActivity(intent)
+            true
+        }
+
+        else -> {
+
+            Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+            false
+        }
+    }
 
     private fun volverAlMenu() {
 
         val navController = Navigation.findNavController(binding.navHostFragmentContainerAdmin)
 
-        when(navController.currentDestination?.label){
+        when (navController.currentDestination?.label) {
 
             labelAgregarClienteFragment -> navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
 
             labelQuitarClienteFragment -> navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
 
-            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(this, "No es posible", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -101,42 +101,42 @@ class MenuPrincipalAdmin : AppCompatActivity() {
 
         val navController = Navigation.findNavController(binding.navHostFragmentContainerAdmin)
 
-        when(navController.currentDestination?.label){
+        when (navController.currentDestination?.label) {
 
             labelMenuAdmin -> navController.navigate(R.id.action_menuAdmin_to_agregarClienteFragment)
 
             labelQuitarClienteFragment -> navController.navigate(R.id.action_quitarClienteFragment_to_agregarClienteFragment)
 
-            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(this, "No es posible", Toast.LENGTH_SHORT).show()
         }
 
     }
 
 
-    private fun iniciarFragmentoQuitarCliente(){
+    private fun iniciarFragmentoQuitarCliente() {
 
         val navController = Navigation.findNavController(binding.navHostFragmentContainerAdmin)
 
-        when(navController.currentDestination?.label){
+        when (navController.currentDestination?.label) {
 
             labelMenuAdmin -> navController.navigate(R.id.action_menuAdmin_to_quitarClienteFragment)
 
             labelAgregarClienteFragment -> navController.navigate(R.id.action_agregarClienteFragment_to_quitarClienteFragment)
 
-            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(this, "No es posible", Toast.LENGTH_SHORT).show()
         }
 
     }
 
 
-    private fun iniciarMenu(){
+    private fun iniciarMenu() {
 
         iniciarSistema(sistemaPrincipal)
 
     }
 
 
-    private fun iniciarSistema(sistema : Sistema){
+    private fun iniciarSistema(sistema: Sistema) {
 
         sistema.iniciarClientesPredeterminados()
 

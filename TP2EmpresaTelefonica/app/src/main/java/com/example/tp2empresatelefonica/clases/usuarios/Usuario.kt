@@ -1,9 +1,14 @@
 package com.example.tp2empresatelefonica.clases.usuarios
 
-class Usuario(val idUsuario : Int, val user : String, val password : String, var tipoUsuario: TipoUsuario = TipoUsuario.CLIENTE) {
+class Usuario(
+    val idUsuario: Int,
+    val user: String,
+    val password: String,
+    var tipoUsuario: TipoUsuario = TipoUsuario.CLIENTE
+) {
 
 
-    fun convertirEnAdmin(){
+    fun convertirEnAdmin() {
         this.tipoUsuario = TipoUsuario.ADMINISTRADOR
     }
 

@@ -16,31 +16,38 @@ class MenuAdmin : Fragment() {
 
     private lateinit var binding: FragmentMenuAdminBinding
     private val sistemaPrincipal = Sistema()
-    private lateinit var clienteSeleccionado : Cliente
+    private lateinit var clienteSeleccionado: Cliente
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         binding = FragmentMenuAdminBinding.inflate(inflater, container, false)
 
         iniciarMenu()
         return binding.root
     }
 
-    private fun iniciarMenu(){
+    private fun iniciarMenu() {
 
         iniciarSistema(sistemaPrincipal)
 
         iniciarRecyclerView()
     }
 
-    private fun iniciarRecyclerView(){
+    private fun iniciarRecyclerView() {
 
         binding.rvRegistroDeLlamadas.layoutManager = LinearLayoutManager(binding.root.context)
         binding.rvRegistroDeLlamadas.setHasFixedSize(true)
-        val customAdapter = AdapterListaDeClientes(sistemaPrincipal.obtenerListaDeClientes(),sistemaPrincipal){ clienteSeleccionado = it }
+        val customAdapter = AdapterListaDeClientes(
+            sistemaPrincipal.obtenerListaDeClientes(),
+            sistemaPrincipal
+        ) { clienteSeleccionado = it }
         binding.rvRegistroDeLlamadas.adapter = customAdapter
     }
 
-    private fun iniciarSistema(sistema : Sistema){
+    private fun iniciarSistema(sistema: Sistema) {
 
         sistema.iniciarClientesPredeterminados()
     }

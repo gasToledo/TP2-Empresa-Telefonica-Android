@@ -21,13 +21,13 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tituloMenuPrincipalCliente2"
-        android:text = "@string/historial_de_llamadas"
+        android:text="@string/historial_de_llamadas"
         android:textSize="25sp"
 
         android:layout_marginBottom="20dp"
@@ -36,7 +36,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloMenuPrincipalCliente"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineRvCliente"/>
+        app:layout_constraintBottom_toTopOf="@+id/guidelineRvCliente" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -49,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineRvCliente"
 
-        app:layout_constraintBottom_toBottomOf="@+id/guidelineRvCliente2"/>
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineRvCliente2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineRvCliente"

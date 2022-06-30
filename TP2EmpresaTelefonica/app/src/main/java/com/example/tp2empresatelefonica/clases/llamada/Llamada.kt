@@ -5,7 +5,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 abstract class Llamada(
-    val  codigo_cliente : Int,
+    val codigo_cliente: Int,
     val fecha_llamada: LocalDate,
     val hora_llamada: LocalTime,
     val duracion_llamada: Double,
@@ -22,7 +22,9 @@ abstract class Llamada(
             Hora de llamada : $hora_llamada
             Duracion de llamada : $duracion_llamada
             Tipo de llamada : $tipo_llamada
-            Precio de llamada : ${calcularPrecio().toBigDecimal().setScale(2,RoundingMode.HALF_DOWN).toDouble()}
+            Precio de llamada : ${
+            calcularPrecio().toBigDecimal().setScale(2, RoundingMode.HALF_DOWN).toDouble()
+        }
             
             """.trimIndent()
     }

@@ -7,8 +7,6 @@
     tools:context=".interfaz.fragments.QuitarClienteFragment">
 
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/quitarClienteDatos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <LinearLayout
@@ -34,8 +32,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/quitarClienteTitulo"
-        app:layout_constraintBottom_toTopOf="@+id/quitarClienteBotones"
-        >
+        app:layout_constraintBottom_toTopOf="@+id/quitarClienteBotones">
 
         <EditText
             android:layout_width="wrap_content"
@@ -47,8 +44,7 @@
             android:layout_marginBottom="50dp"
             android:layout_marginTop="50dp"
             android:autofillHints="username"
-            android:inputType="number"
-            />
+            android:inputType="number" />
 
         <EditText
             android:layout_width="wrap_content"

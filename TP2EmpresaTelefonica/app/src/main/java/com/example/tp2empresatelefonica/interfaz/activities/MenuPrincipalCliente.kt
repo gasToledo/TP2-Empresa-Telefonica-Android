@@ -20,11 +20,10 @@ class MenuPrincipalCliente : AppCompatActivity() {
     private val claveMensaje = "USER_ID"
 
     private lateinit var preferences: SharedPreferences
-    private lateinit var editor : SharedPreferences.Editor
+    private lateinit var editor: SharedPreferences.Editor
 
     private val labelMenuCliente = "fragment_menu_cliente"
     private val labelRealizarLlamadaFragment = "RealizarLlamadaFragment"
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,7 +36,7 @@ class MenuPrincipalCliente : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false);
 
         val intent = intent
-        val informacionLlego : Bundle? = intent.extras
+        val informacionLlego: Bundle? = intent.extras
 
 
 
@@ -57,43 +56,42 @@ class MenuPrincipalCliente : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId){
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
 
-            R.id.nav_home_cliente -> {
-                iniciarFragmentoClienteHome()
-                true
-            }
+        R.id.nav_home_cliente -> {
+            iniciarFragmentoClienteHome()
+            true
+        }
 
-            R.id.nav_makecall_client -> {
-                iniciarFragmentoDeLlamada()
-                true
-            }
+        R.id.nav_makecall_client -> {
+            iniciarFragmentoDeLlamada()
+            true
+        }
 
-            R.id.nav_logout_cliente -> {
+        R.id.nav_logout_cliente -> {
 
-                volverAInicioSesion()
-                true
-            }
+            volverAInicioSesion()
+            true
+        }
         else -> {
 
-            Toast.makeText(this, item.title,Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
             true
         }
     }
 
-    private fun iniciarFragmentoDeLlamada(){
+    private fun iniciarFragmentoDeLlamada() {
 
 
         val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
-        when(navController.currentDestination?.label){
+        when (navController.currentDestination?.label) {
 
             labelMenuCliente -> navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment)
 
-            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(this, "No es posible", Toast.LENGTH_SHORT).show()
 
         }
-
 
 
     }
@@ -103,24 +101,24 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
         val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
-        when(navController.currentDestination?.label){
+        when (navController.currentDestination?.label) {
 
             labelRealizarLlamadaFragment -> navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
 
-            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+            else -> Toast.makeText(this, "No es posible", Toast.LENGTH_SHORT).show()
 
         }
 
 
     }
 
-    private fun volverAInicioSesion(){
+    private fun volverAInicioSesion() {
 
         val intent = Intent(this, InicioDeSesion::class.java)
         startActivity(intent)
     }
 
-    private fun inicializarElementos(){
+    private fun inicializarElementos() {
 
         preferences = this.getSharedPreferences("CLIENTE_ID", Context.MODE_PRIVATE)
         editor = preferences.edit()

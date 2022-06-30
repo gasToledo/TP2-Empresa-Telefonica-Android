@@ -9,7 +9,7 @@
         android:id="@+id/menuCliente"
         android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuCliente"
         android:label="fragment_menu_cliente"
-        tools:layout="@layout/fragment_menu_cliente" >
+        tools:layout="@layout/fragment_menu_cliente">
         <action
             android:id="@+id/action_menuCliente_to_realizarLlamadaFragment"
             app:destination="@id/realizarLlamadaFragment"
@@ -18,7 +18,7 @@
             app:exitAnim="@anim/slide_out_down"
 
             app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_up"/>
+            app:popExitAnim="@anim/slide_out_up" />
         <argument
             android:name="USER_ID"
             app:argType="integer"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/realizarLlamadaFragment"
         android:name="com.example.tp2empresatelefonica.interfaz.fragments.RealizarLlamadaFragment"
-        android:label="RealizarLlamadaFragment" >
+        android:label="RealizarLlamadaFragment">
         <action
             android:id="@+id/action_realizarLlamadaFragment_to_menuCliente"
             app:destination="@id/menuCliente"
@@ -36,7 +36,7 @@
             app:exitAnim="@anim/slide_out_up"
 
             app:popEnterAnim="@anim/slide_out_up"
-            app:popExitAnim="@anim/slide_in_down"/>
+            app:popExitAnim="@anim/slide_in_down" />
     </fragment>
     <argument
         android:name="USER_ID"

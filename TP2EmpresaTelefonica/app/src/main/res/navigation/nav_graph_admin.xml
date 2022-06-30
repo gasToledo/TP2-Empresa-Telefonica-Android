@@ -8,7 +8,7 @@
         android:id="@+id/agregarClienteFragment"
         android:name="com.example.tp2empresatelefonica.interfaz.fragments.AgregarClienteFragment"
         android:label="fragment_agregar_cliente"
-        tools:layout="@layout/fragment_agregar_cliente" >
+        tools:layout="@layout/fragment_agregar_cliente">
         <action
             android:id="@+id/action_agregarClienteFragment_to_menuAdmin"
             app:destination="@id/menuAdmin"
@@ -17,7 +17,7 @@
             app:exitAnim="@anim/slide_out_up"
 
             app:popEnterAnim="@anim/slide_out_up"
-            app:popExitAnim="@anim/slide_in_down"/>
+            app:popExitAnim="@anim/slide_in_down" />
         <action
             android:id="@+id/action_agregarClienteFragment_to_quitarClienteFragment"
             app:destination="@id/quitarClienteFragment"
@@ -26,7 +26,7 @@
             app:exitAnim="@anim/slide_out_down"
 
             app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_up"/>
+            app:popExitAnim="@anim/slide_out_up" />
     </fragment>
     <activity
         android:id="@+id/menuPrincipalAdmin"
@@ -36,7 +36,7 @@
         android:id="@+id/menuAdmin"
         android:name="com.example.tp2empresatelefonica.interfaz.fragments.MenuAdmin"
         android:label="fragment_menu_admin"
-        tools:layout="@layout/fragment_menu_admin" >
+        tools:layout="@layout/fragment_menu_admin">
         <action
             android:id="@+id/action_menuAdmin_to_agregarClienteFragment"
             app:destination="@id/agregarClienteFragment"
@@ -45,7 +45,7 @@
             app:exitAnim="@anim/slide_out_down"
 
             app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_up"/>
+            app:popExitAnim="@anim/slide_out_up" />
         <action
             android:id="@+id/action_menuAdmin_to_quitarClienteFragment"
             app:destination="@id/quitarClienteFragment"
@@ -54,13 +54,13 @@
             app:exitAnim="@anim/slide_out_down"
 
             app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_up"/>
+            app:popExitAnim="@anim/slide_out_up" />
     </fragment>
     <fragment
         android:id="@+id/quitarClienteFragment"
         android:name="com.example.tp2empresatelefonica.interfaz.fragments.QuitarClienteFragment"
         android:label="fragment_quitar_cliente"
-        tools:layout="@layout/fragment_quitar_cliente" >
+        tools:layout="@layout/fragment_quitar_cliente">
         <action
             android:id="@+id/action_quitarClienteFragment_to_menuAdmin"
             app:destination="@id/menuAdmin"
@@ -69,8 +69,7 @@
             app:exitAnim="@anim/slide_out_up"
 
             app:popEnterAnim="@anim/slide_out_up"
-            app:popExitAnim="@anim/slide_in_down"
-            />
+            app:popExitAnim="@anim/slide_in_down" />
         <action
             android:id="@+id/action_quitarClienteFragment_to_agregarClienteFragment"
             app:destination="@id/agregarClienteFragment"
@@ -79,6 +78,6 @@
             app:exitAnim="@anim/slide_out_down"
 
             app:popEnterAnim="@anim/slide_in_down"
-            app:popExitAnim="@anim/slide_out_up"/>
+            app:popExitAnim="@anim/slide_out_up" />
     </fragment>
 </navigation>

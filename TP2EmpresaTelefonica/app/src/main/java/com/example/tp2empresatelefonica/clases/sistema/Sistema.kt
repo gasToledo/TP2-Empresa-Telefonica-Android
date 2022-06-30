@@ -24,13 +24,13 @@ import java.time.format.DateTimeParseException
 @RequiresApi(Build.VERSION_CODES.O)
 class Sistema {
 
-    private val listaClientes = mutableMapOf<Cliente,MutableList<Llamada>>()
+    private val listaClientes = mutableMapOf<Cliente, MutableList<Llamada>>()
 
 
-    private fun ingresarClientes(alta : Cliente) {
+    private fun ingresarClientes(alta: Cliente) {
         val historialLlamadas = mutableListOf<Llamada>()
 
-        if(ClientesRepository.obtenerCliente(alta.codigoDeCliente()) == null) {
+        if (ClientesRepository.obtenerCliente(alta.codigoDeCliente()) == null) {
             ClientesRepository.agregarCliente(
                 alta.codigoDeCliente(),
                 alta.nombreDeCliente(),
@@ -57,24 +57,24 @@ class Sistema {
         }
     }
 
-    private fun verificarCliente(cliente: Cliente){
-        if(!listaClientes.contains(cliente)){
+    private fun verificarCliente(cliente: Cliente) {
+        if (!listaClientes.contains(cliente)) {
             throw NoExisteCliente("[ERROR] Cliente no existente.")
         }
     }
 
-    private fun verificarCliente(codigo: Int){
-        if(!listaClientes.contains(Cliente(codigo))){
+    private fun verificarCliente(codigo: Int) {
+        if (!listaClientes.contains(Cliente(codigo))) {
             throw NoExisteCliente("[ERROR] Cliente no existente.")
         }
     }
 
-    fun obtenerListaDeClientes() : MutableList<Cliente> {
+    fun obtenerListaDeClientes(): MutableList<Cliente> {
 
         return listaClientes.keys.toMutableList()
     }
 
-    fun obtenerListaDeLlamadasPorCliente(id: Int) : MutableList<Llamada>? {
+    fun obtenerListaDeLlamadasPorCliente(id: Int): MutableList<Llamada>? {
 
         verificarCliente(id)
 
@@ -83,75 +83,81 @@ class Sistema {
     }
 
 
-    private fun ingresarHora(hora : String): LocalTime {
+    private fun ingresarHora(hora: String): LocalTime {
 
-        var time : LocalTime = LocalTime.now()
+        var time: LocalTime = LocalTime.now()
         try {
-             time = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm"))
-        }catch (e:DateTimeException){
+            time = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm"))
+        } catch (e: DateTimeException) {
             println(e.message)
         }
 
         return time
     }
 
-    private fun ingresarFecha(fecha : String) : LocalDate {
+    private fun ingresarFecha(fecha: String): LocalDate {
 
-         var date : LocalDate = LocalDate.now()
+        var date: LocalDate = LocalDate.now()
 
         try {
             val dateAux = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
             date = if (dateAux.isAfter(LocalDate.now())) LocalDate.now() else dateAux
-        } catch (e : DateTimeParseException) {
+        } catch (e: DateTimeParseException) {
             println(e.message)
         }
 
         return date
     }
 
-    private fun ingresarTipoDeLlamada(tipo : Char) {
+    private fun ingresarTipoDeLlamada(tipo: Char) {
 
-        if(!(tipo == 'L' || tipo == 'I')){
+        if (!(tipo == 'L' || tipo == 'I')) {
 
             throw TipoDeLlamadaErroneo("[ERROR] Tipo de llamada erroneo.")
         }
     }
 
-    fun darDeAltaCliente(codigo : Int, nombre : String, apellido : String, date : LocalDate) {
+    fun darDeAltaCliente(codigo: Int, nombre: String, apellido: String, date: LocalDate) {
 
         val clienteAlta = Cliente(codigo, nombre, apellido, date)
 
         ingresarClientes(clienteAlta)
     }
 
-    fun obtenerCliente(codigo: Int) : Cliente {
+    fun obtenerCliente(codigo: Int): Cliente {
         listaClientes.keys.forEach {
-            if(it.codigoDeCliente() == codigo){
+            if (it.codigoDeCliente() == codigo) {
                 return it
             }
         }
         throw NoExisteCliente("[ERROR] Cliente no existente.")
     }
 
-    fun darDeBajaCliente(codigoBaja : Int) {
+    fun darDeBajaCliente(codigoBaja: Int) {
 
         verificarCliente(codigoBaja)
 
         listaClientes.remove(this.obtenerCliente(codigoBaja))
 
-        if(ClientesRepository.obtenerCliente(codigoBaja) != null) {
+        if (ClientesRepository.obtenerCliente(codigoBaja) != null) {
             ClientesRepository.removerClientes(codigoBaja)
         }
     }
 
-    private fun ingresarLlamadaACliente(cliente: Cliente, llamada : Llamada){
+    private fun ingresarLlamadaACliente(cliente: Cliente, llamada: Llamada) {
 
         verificarCliente(cliente)
         LlamadasRepository.agregarLlamada(llamada)
         //listaClientes[cliente]?.add(llamada)
     }
 
-    fun realizarLlamada(cliente: Cliente, fecha: String, hora: String, duracion: Double, tipo: Char){
+    fun realizarLlamada(
+        cliente: Cliente,
+        fecha: String,
+        hora: String,
+        duracion: Double,
+        tipo: Char
+    ) {
 
         verificarCliente(cliente)
 
@@ -160,28 +166,28 @@ class Sistema {
 
         ingresarTipoDeLlamada(tipo)
 
-        val llamada : Llamada = if (esFinDeSemana(fechaFinal)) {
-            LlamadaFinDeSemana(cliente.codigoDeCliente(),fechaFinal,horaFinal,duracion,tipo)
+        val llamada: Llamada = if (esFinDeSemana(fechaFinal)) {
+            LlamadaFinDeSemana(cliente.codigoDeCliente(), fechaFinal, horaFinal, duracion, tipo)
 
         } else if (esNoche(horaFinal) || cliente.tipoCliente() == TipoCliente.NUEVO) {
-            LlamadaNocturna(cliente.codigoDeCliente(), fechaFinal,horaFinal,duracion,tipo)
+            LlamadaNocturna(cliente.codigoDeCliente(), fechaFinal, horaFinal, duracion, tipo)
 
         } else {
-            LlamadaRegular(cliente.codigoDeCliente(),fechaFinal,horaFinal,duracion,tipo)
+            LlamadaRegular(cliente.codigoDeCliente(), fechaFinal, horaFinal, duracion, tipo)
         }
 
-        this.ingresarLlamadaACliente(cliente,llamada)
+        this.ingresarLlamadaACliente(cliente, llamada)
     }
 
-    private fun esFinDeSemana(fecha : LocalDate) : Boolean {
+    private fun esFinDeSemana(fecha: LocalDate): Boolean {
         return fecha.dayOfWeek == DayOfWeek.SUNDAY || fecha.dayOfWeek == DayOfWeek.SATURDAY
     }
 
-    private fun esNoche(hora : LocalTime) : Boolean {
+    private fun esNoche(hora: LocalTime): Boolean {
         return hora.hour in 22 downTo 5
     }
 
-    fun calcularCostoLlamadasCliente(codigo: Int) : Double {
+    fun calcularCostoLlamadasCliente(codigo: Int): Double {
         verificarCliente(codigo)
 
         var precioTotal = 0.0
@@ -192,7 +198,7 @@ class Sistema {
         return precioTotal.toBigDecimal().setScale(2, RoundingMode.HALF_DOWN).toDouble()
     }
 
-    fun calcularCostoLlamadaTodosClientes() : Double {
+    fun calcularCostoLlamadaTodosClientes(): Double {
 
         var costoTotal = 0.0
         val lista = listaClientes.keys
@@ -201,7 +207,7 @@ class Sistema {
             costoTotal += calcularCostoLlamadasCliente(codigo)
         }
 
-        return costoTotal.toBigDecimal().setScale(2,RoundingMode.HALF_DOWN).toDouble()
+        return costoTotal.toBigDecimal().setScale(2, RoundingMode.HALF_DOWN).toDouble()
     }
 }
 
