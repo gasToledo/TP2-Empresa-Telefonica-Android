@@ -24,12 +24,14 @@ class AdapterListaDeClientes(
         val nombreCliente: TextView
         val tipoDeCliente: TextView
         val costoTotalDeLlamadasCliente: TextView
+        val idDeCliente: TextView
         val vista: LinearLayout
 
         init {
             nombreCliente = view.findViewById(R.id.rvNombreCliente)
             tipoDeCliente = view.findViewById(R.id.rvTipoDeCliente)
             costoTotalDeLlamadasCliente = view.findViewById(R.id.rvCostoTotalLlamadasCliente)
+            idDeCliente = view.findViewById(R.id.rvIdCliente)
             vista = view.findViewById(R.id.rvLinearLayout)
         }
 
@@ -49,6 +51,7 @@ class AdapterListaDeClientes(
         holder.tipoDeCliente.text = "Estado: ${listaClientes[position].tipoCliente().name}"
         holder.costoTotalDeLlamadasCliente.text =
             "Costo total de llamadas: ${sistema.calcularCostoLlamadasCliente(listaClientes[position].codigoDeCliente())}"
+        holder.idDeCliente.text = "ID: ${listaClientes[position].codigoDeCliente()}"
 
         holder.vista.setOnClickListener {
             enviarCliente(listaClientes[position])

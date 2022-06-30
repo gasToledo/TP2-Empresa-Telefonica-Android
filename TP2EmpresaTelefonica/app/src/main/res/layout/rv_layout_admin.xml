@@ -26,6 +26,15 @@
             android:layout_marginBottom="5sp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rvIdCliente"
+            android:text="@string/id_cliente_desde_admin"
+            android:textSize="18sp"
+            android:textColor="@color/red_200"
+            android:layout_marginBottom="5sp"/>
+
+        <TextView
             android:id="@+id/rvTipoDeCliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
