@@ -12,7 +12,13 @@
         tools:layout="@layout/fragment_menu_cliente" >
         <action
             android:id="@+id/action_menuCliente_to_realizarLlamadaFragment"
-            app:destination="@id/realizarLlamadaFragment" />
+            app:destination="@id/realizarLlamadaFragment"
+
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up"/>
         <argument
             android:name="USER_ID"
             app:argType="integer"
@@ -24,7 +30,13 @@
         android:label="RealizarLlamadaFragment" >
         <action
             android:id="@+id/action_realizarLlamadaFragment_to_menuCliente"
-            app:destination="@id/menuCliente" />
+            app:destination="@id/menuCliente"
+
+            app:enterAnim="@anim/slide_in_down"
+            app:exitAnim="@anim/slide_out_up"
+
+            app:popEnterAnim="@anim/slide_out_up"
+            app:popExitAnim="@anim/slide_in_down"/>
     </fragment>
     <argument
         android:name="USER_ID"

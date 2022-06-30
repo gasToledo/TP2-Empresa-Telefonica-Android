@@ -11,10 +11,22 @@
         tools:layout="@layout/fragment_agregar_cliente" >
         <action
             android:id="@+id/action_agregarClienteFragment_to_menuAdmin"
-            app:destination="@id/menuAdmin" />
+            app:destination="@id/menuAdmin"
+
+            app:enterAnim="@anim/slide_in_down"
+            app:exitAnim="@anim/slide_out_up"
+
+            app:popEnterAnim="@anim/slide_out_up"
+            app:popExitAnim="@anim/slide_in_down"/>
         <action
             android:id="@+id/action_agregarClienteFragment_to_quitarClienteFragment"
-            app:destination="@id/quitarClienteFragment" />
+            app:destination="@id/quitarClienteFragment"
+
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up"/>
     </fragment>
     <activity
         android:id="@+id/menuPrincipalAdmin"
@@ -28,13 +40,21 @@
         <action
             android:id="@+id/action_menuAdmin_to_agregarClienteFragment"
             app:destination="@id/agregarClienteFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up"/>
         <action
             android:id="@+id/action_menuAdmin_to_quitarClienteFragment"
-            app:destination="@id/quitarClienteFragment" />
+            app:destination="@id/quitarClienteFragment"
+
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up"/>
     </fragment>
     <fragment
         android:id="@+id/quitarClienteFragment"
@@ -43,9 +63,22 @@
         tools:layout="@layout/fragment_quitar_cliente" >
         <action
             android:id="@+id/action_quitarClienteFragment_to_menuAdmin"
-            app:destination="@id/menuAdmin" />
+            app:destination="@id/menuAdmin"
+
+            app:enterAnim="@anim/slide_in_down"
+            app:exitAnim="@anim/slide_out_up"
+
+            app:popEnterAnim="@anim/slide_out_up"
+            app:popExitAnim="@anim/slide_in_down"
+            />
         <action
             android:id="@+id/action_quitarClienteFragment_to_agregarClienteFragment"
-            app:destination="@id/agregarClienteFragment" />
+            app:destination="@id/agregarClienteFragment"
+
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+
+            app:popEnterAnim="@anim/slide_in_down"
+            app:popExitAnim="@anim/slide_out_up"/>
     </fragment>
 </navigation>
