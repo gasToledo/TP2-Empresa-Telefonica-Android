@@ -1,5 +1,7 @@
 package com.example.tp2empresatelefonica.interfaz.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +25,7 @@ class RealizarLlamadaFragment : Fragment() {
 
     private lateinit var  binding : FragmentRealizarLlamadaBinding
     private val sistema = Sistema()
+    private lateinit var preferences: SharedPreferences
     private val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
     private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
@@ -42,13 +45,9 @@ class RealizarLlamadaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val navController : NavController = view.findNavController()
-        val claveMensaje = "USER_ID"
+        preferences = this.requireActivity().getSharedPreferences("CLIENTE_ID", Context.MODE_PRIVATE)
+        val idCliente = preferences.getInt("CLIENTE_ID", 0)
 
-        val bundle = arguments
-        val userId = bundle!!.getInt(claveMensaje)
-
-        println("llego $userId")
 
         binding.ingresarFechaLlamada.setOnClickListener {
             val fecha = DatePickerFragment {year, month, day -> mostrarFecha(year, month, day)}
@@ -66,7 +65,7 @@ class RealizarLlamadaFragment : Fragment() {
             val horarioSeleccionado : String = binding.ingresarHorarioLlamada.text.toString()
 
 
-                val cliente = sistema.obtenerCliente(userId)
+                val cliente = sistema.obtenerCliente(idCliente)
 
                 sistema.realizarLlamada(cliente,
                 fechaSeleccionada,

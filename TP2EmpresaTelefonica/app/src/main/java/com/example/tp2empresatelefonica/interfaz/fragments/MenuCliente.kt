@@ -1,6 +1,8 @@
 package com.example.tp2empresatelefonica.interfaz.fragments
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +19,7 @@ class MenuCliente : Fragment() {
 
     private lateinit var binding: FragmentMenuClienteBinding
     private val sistemaPrincipal = Sistema()
-
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,27 +28,23 @@ class MenuCliente : Fragment() {
     ): View {
         binding = FragmentMenuClienteBinding.inflate(inflater, container, false)
 
-
-
         iniciarMenu()
         return binding.root
     }
 
     private fun iniciarMenu() {
 
-        val claveMensaje = "USER_ID"
-        val bundle = arguments
-        val usuarioIniciado = bundle!!.getInt(claveMensaje)
+        preferences = this.requireActivity().getSharedPreferences("CLIENTE_ID",Context.MODE_PRIVATE)
+        val datosCliente = preferences.getInt("CLIENTE_ID", 0)
 
-        println("llego $usuarioIniciado")
 
         binding.tituloMenuPrincipalCliente.text = "Bienvenido ${
-            ClientesRepository.obtenerCliente(usuarioIniciado)
+            ClientesRepository.obtenerCliente(datosCliente)
                 ?.nombreDeCliente()
         }"
 
         iniciarSistema(sistemaPrincipal)
-        iniciarRecyclerView(usuarioIniciado)
+        iniciarRecyclerView(datosCliente)
 
     }
 

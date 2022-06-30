@@ -1,6 +1,8 @@
 package com.example.tp2empresatelefonica.interfaz.activities
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -16,6 +18,9 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
     private lateinit var binding: MenuPrincipalClienteBinding
     private val claveMensaje = "USER_ID"
+
+    private lateinit var preferences: SharedPreferences
+    private lateinit var editor : SharedPreferences.Editor
 
     private val labelMenuCliente = "fragment_menu_cliente"
     private val labelRealizarLlamadaFragment = "RealizarLlamadaFragment"
@@ -36,6 +41,11 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
 
 
+        inicializarElementos()
+
+        guardarDatosCliente(informacionLlego!!.getInt(claveMensaje))
+
+        println("Datos del cliente: ${obtenerDatosCliente()}")
         setContentView(view)
 
 
@@ -74,14 +84,11 @@ class MenuPrincipalCliente : AppCompatActivity() {
     private fun iniciarFragmentoDeLlamada(){
 
 
-        val intent = intent
-        val informacionLlego : Bundle? = intent.extras
-
         val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
         when(navController.currentDestination?.label){
 
-            labelMenuCliente -> navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment, informacionLlego)
+            labelMenuCliente -> navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment)
 
             else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
 
@@ -93,14 +100,12 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
     private fun iniciarFragmentoClienteHome() {
 
-        val intent = intent
-        val informacionLlego : Bundle? = intent.extras
 
         val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
         when(navController.currentDestination?.label){
 
-            labelRealizarLlamadaFragment -> navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente, informacionLlego)
+            labelRealizarLlamadaFragment -> navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente)
 
             else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
 
@@ -113,6 +118,23 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
         val intent = Intent(this, InicioDeSesion::class.java)
         startActivity(intent)
+    }
+
+    private fun inicializarElementos(){
+
+        preferences = this.getSharedPreferences("CLIENTE_ID", Context.MODE_PRIVATE)
+        editor = preferences.edit()
+    }
+
+    private fun guardarDatosCliente(id: Int) {
+
+        editor.putInt("CLIENTE_ID", id)
+        editor.apply()
+    }
+
+    private fun obtenerDatosCliente(): Int {
+
+        return preferences.getInt("CLIENTE_ID", 0)
     }
 }
 
