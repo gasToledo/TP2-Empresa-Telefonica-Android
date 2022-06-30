@@ -45,29 +45,33 @@ class RealizarLlamadaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        preferences = this.requireActivity().getSharedPreferences("CLIENTE_ID", Context.MODE_PRIVATE)
+        preferences =
+            this.requireActivity().getSharedPreferences("CLIENTE_ID", Context.MODE_PRIVATE)
         val idCliente = preferences.getInt("CLIENTE_ID", 0)
 
 
         binding.ingresarFechaLlamada.setOnClickListener {
-            val fecha = DatePickerFragment {year, month, day -> mostrarFecha(year, month, day)}
+            val fecha = DatePickerFragment { year, month, day -> mostrarFecha(year, month, day) }
             fecha.show(parentFragmentManager, "DatePicker")
         }
 
         binding.ingresarHorarioLlamada.setOnClickListener {
-            val horario = TimePickerFragment {hour, minute -> mostrarHorario(hour, minute)}
-            horario.show(parentFragmentManager,"TimePicker")
+            val horario = TimePickerFragment { hour, minute -> mostrarHorario(hour, minute) }
+            horario.show(parentFragmentManager, "TimePicker")
         }
 
         binding.hacerLlamada.setOnClickListener {
 
-            val fechaSeleccionada : String = binding.ingresarFechaLlamada.text.toString()
-            val horarioSeleccionado : String = binding.ingresarHorarioLlamada.text.toString()
+
+            val fechaSeleccionada: String = binding.ingresarFechaLlamada.text.toString()
+            val horarioSeleccionado: String = binding.ingresarHorarioLlamada.text.toString()
 
 
-                val cliente = sistema.obtenerCliente(idCliente)
+            if (comprobarAlIngresarLlamada()){
+            val cliente = sistema.obtenerCliente(idCliente)
 
-                sistema.realizarLlamada(cliente,
+            sistema.realizarLlamada(
+                cliente,
                 fechaSeleccionada,
                 horarioSeleccionado,
                 binding.ingresarDuracionLlamada.text.toString().toDouble(),
@@ -75,7 +79,8 @@ class RealizarLlamadaFragment : Fragment() {
             )
 
             Toast.makeText(binding.root.context, "Llamada OK", Toast.LENGTH_SHORT).show()
-            }
+        }
+    }
 
     }
 
@@ -101,4 +106,23 @@ class RealizarLlamadaFragment : Fragment() {
         return LocalTime.of(hour,minute).format(timeFormatter)
     }
 
+    private fun comprobarAlIngresarLlamada() : Boolean {
+
+        if(binding.ingresarFechaLlamada.text.isNullOrEmpty() ||
+                binding.ingresarHorarioLlamada.text.isNullOrEmpty() ||
+                binding.ingresarDuracionLlamada.text.isNullOrEmpty() ||
+                binding.ingresarTipoLlamada.text.isNullOrEmpty()){
+
+            Toast.makeText(binding.root.context, "Porfavor ingrese datos.", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else if(binding.ingresarTipoLlamada.text.toString() != "L" && binding.ingresarTipoLlamada.text.toString() != "I"){
+
+            Toast.makeText(binding.root.context, "Porfavor seleccione el tipo de llamada correcto L [LOCAL] or I [INTERNACIONAL].", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else {
+            return true
+        }
+    }
 }
