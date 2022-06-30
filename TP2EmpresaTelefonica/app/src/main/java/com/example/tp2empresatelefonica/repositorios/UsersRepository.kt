@@ -12,7 +12,7 @@ object UsersRepository {
         listaDeUsuarios.addAll(
             listOf(
 
-                Usuario(0, "a", "a", TipoUsuario.ADMINISTRADOR),
+                Usuario(0, "Admin", "Admin", TipoUsuario.ADMINISTRADOR),
                 Usuario(1, "c1", "c1", TipoUsuario.CLIENTE),
                 Usuario(2, "c2", "c2", TipoUsuario.CLIENTE),
                 Usuario(3, "c3", "c3", TipoUsuario.CLIENTE),

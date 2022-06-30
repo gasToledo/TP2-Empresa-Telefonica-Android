@@ -19,8 +19,8 @@ class InicioDeSesion : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        Toast.makeText(this,"PARA INICIAR COMO ADMIN [USUARIO: ADMIN, CLAVE: ADMIN]", Toast.LENGTH_LONG).show()
-        Toast.makeText(this,"PARA INICIAR COMO CLIENTE [USUARIO/CLAVE: C1]", Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"PARA INICIAR COMO ADMIN [USUARIO: Admin, CLAVE: Admin]", Toast.LENGTH_LONG).show()
+        Toast.makeText(this,"PARA INICIAR COMO CLIENTE [USUARIO/CLAVE: c1]", Toast.LENGTH_LONG).show()
 
         binding.botonIngresar.setOnClickListener {
             iniciarSesion()
