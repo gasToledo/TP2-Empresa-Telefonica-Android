@@ -7,19 +7,20 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.fragment.app.commit
 import androidx.navigation.Navigation
 import com.example.tp2empresatelefonica.R
 import com.example.tp2empresatelefonica.databinding.MenuPrincipalClienteBinding
-import com.example.tp2empresatelefonica.interfaz.fragments.MenuCliente
-import com.example.tp2empresatelefonica.interfaz.fragments.RealizarLlamadaFragment
 
 
 class MenuPrincipalCliente : AppCompatActivity() {
 
     private lateinit var binding: MenuPrincipalClienteBinding
     private val claveMensaje = "USER_ID"
+
+    private val labelMenuCliente = "fragment_menu_cliente"
+    private val labelRealizarLlamadaFragment = "RealizarLlamadaFragment"
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,11 @@ class MenuPrincipalCliente : AppCompatActivity() {
         val intent = intent
         val informacionLlego : Bundle? = intent.extras
 
+
+
         setContentView(view)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -45,13 +50,11 @@ class MenuPrincipalCliente : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId){
 
             R.id.nav_home_cliente -> {
-
                 iniciarFragmentoClienteHome()
                 true
             }
 
             R.id.nav_makecall_client -> {
-
                 iniciarFragmentoDeLlamada()
                 true
             }
@@ -71,13 +74,19 @@ class MenuPrincipalCliente : AppCompatActivity() {
     private fun iniciarFragmentoDeLlamada(){
 
 
-
         val intent = intent
         val informacionLlego : Bundle? = intent.extras
 
+        val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
-            val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
-            navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment, informacionLlego)
+        when(navController.currentDestination?.label){
+
+            labelMenuCliente -> navController.navigate(R.id.action_menuCliente_to_realizarLlamadaFragment, informacionLlego)
+
+            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+
+        }
+
 
 
     }
@@ -86,9 +95,16 @@ class MenuPrincipalCliente : AppCompatActivity() {
 
         val intent = intent
         val informacionLlego : Bundle? = intent.extras
+
         val navController = Navigation.findNavController(binding.navHostFragmentContainerCliente)
 
-        navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente,informacionLlego)
+        when(navController.currentDestination?.label){
+
+            labelRealizarLlamadaFragment -> navController.navigate(R.id.action_realizarLlamadaFragment_to_menuCliente, informacionLlego)
+
+            else -> Toast.makeText(this,"No es posible", Toast.LENGTH_SHORT).show()
+
+        }
 
 
     }

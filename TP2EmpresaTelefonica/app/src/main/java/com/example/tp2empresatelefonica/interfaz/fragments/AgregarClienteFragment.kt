@@ -45,7 +45,6 @@ class AgregarClienteFragment : Fragment() {
             }
             else if(!comprobarExistenciaCliente(binding.agregarClienteId.text.toString().toInt())) {
 
-                /*ClientesRepository.agregarCliente(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString())*/
                 sistema.darDeAltaCliente(binding.agregarClienteId.text.toString().toInt(),binding.agregarClienteNombre.text.toString(),binding.agregarClienteApellido.text.toString(), LocalDate.now())
                 UsersRepository.agregarUsuario(binding.agregarClienteId.text.toString().toInt(), binding.agregarClienteNombre.text.toString(), binding.agregarClienteNombre.text.toString(), TipoUsuario.CLIENTE)
 
@@ -55,11 +54,6 @@ class AgregarClienteFragment : Fragment() {
                 Toast.makeText(binding.root.context,"El cliente ya se encuentra registrado.",Toast.LENGTH_SHORT).show()
 
             }
-        }
-
-        binding.agregarClienteButtonSalir.setOnClickListener {
-            navController.navigate(R.id.action_agregarClienteFragment_to_menuAdmin)
-
         }
 
     }

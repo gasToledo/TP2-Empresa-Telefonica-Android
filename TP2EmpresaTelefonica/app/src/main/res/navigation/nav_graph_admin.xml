@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_agregarClienteFragment_to_menuAdmin"
             app:destination="@id/menuAdmin" />
+        <action
+            android:id="@+id/action_agregarClienteFragment_to_quitarClienteFragment"
+            app:destination="@id/quitarClienteFragment" />
     </fragment>
     <activity
         android:id="@+id/menuPrincipalAdmin"
@@ -41,5 +44,8 @@
         <action
             android:id="@+id/action_quitarClienteFragment_to_menuAdmin"
             app:destination="@id/menuAdmin" />
+        <action
+            android:id="@+id/action_quitarClienteFragment_to_agregarClienteFragment"
+            app:destination="@id/agregarClienteFragment" />
     </fragment>
 </navigation>

@@ -93,16 +93,6 @@
             android:layout_marginEnd="10dp"
             style="?android:attr/buttonBarButtonStyle" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/agregarClienteButtonSalir"
-            android:text="@string/salir"
-            android:textSize="20sp"
-            android:ems="5"
-            android:layout_marginStart="10dp"
-            style="?android:attr/buttonBarButtonStyle" />
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

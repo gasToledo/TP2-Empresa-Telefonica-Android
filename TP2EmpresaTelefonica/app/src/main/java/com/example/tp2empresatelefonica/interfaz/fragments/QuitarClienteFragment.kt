@@ -52,10 +52,6 @@ class QuitarClienteFragment : Fragment() {
             }
         }
 
-        binding.quitarClienteButtonSalir.setOnClickListener {
-            navController.navigate(R.id.action_quitarClienteFragment_to_menuAdmin)
-        }
-
     }
 
     private fun comprobarExistenciaCliente(clienteId : Int): Boolean {

@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_home_admin"
+        android:title="@string/home_admin"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_agregar_cliente"
         android:icon="@drawable/ic_add_cliente"
         android:title="@string/agregar_cliente"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="never"/>
 
     <item
         android:id="@+id/action_quitar_cliente"

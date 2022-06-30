@@ -27,6 +27,7 @@ class MenuCliente : Fragment() {
         binding = FragmentMenuClienteBinding.inflate(inflater, container, false)
 
 
+
         iniciarMenu()
         return binding.root
     }
